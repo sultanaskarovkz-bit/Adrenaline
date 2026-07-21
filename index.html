@@ -402,19 +402,30 @@ a{color:inherit}
 
 /* ==================== галерея ==================== */
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.gal .ph{
-  aspect-ratio:1;border-radius:13px;border:1px dashed rgba(63,214,236,.35);
-  background:linear-gradient(160deg, rgba(15,49,64,.6), rgba(7,26,33,.8));
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  font-family:var(--font-m);font-size:9.5px;color:var(--steel);letter-spacing:.16em;
-  position:relative;overflow:hidden;
+.gal .gph{
+  aspect-ratio:1;border-radius:13px;border:1px solid var(--line);
+  overflow:hidden;position:relative;padding:0;background:var(--deep);cursor:pointer;
 }
-.gal .ph::before{content:'';position:absolute;inset:0;
-  background:linear-gradient(100deg, transparent 30%, rgba(63,214,236,.08) 50%, transparent 70%);
-  transform:translateX(-100%);animation:shimmer 3s infinite}
-@keyframes shimmer{to{transform:translateX(100%)}}
-.gal .ph.v{grid-column:1/-1;aspect-ratio:16/9}
-.gal svg{width:26px;height:26px;opacity:.6}
+.gal .gph img{width:100%;height:100%;object-fit:cover;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.gal .gph:active img{transform:scale(1.06)}
+.gal .gph::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(transparent 60%, rgba(7,26,33,.55));
+  pointer-events:none}
+.gal .gph.v{grid-column:1/-1;aspect-ratio:16/9}
+.lightbox{
+  position:fixed;inset:0;z-index:150;background:rgba(7,26,33,.96);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.lightbox.on{display:flex}
+.lightbox img{max-width:100%;max-height:86svh;border-radius:12px;
+  border:1px solid var(--line);animation:lbIn .3s cubic-bezier(.2,1.4,.4,1)}
+@keyframes lbIn{from{transform:scale(.85);opacity:0}}
+.lb-close{
+  position:absolute;top:calc(16px + env(safe-area-inset-top));right:16px;
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(15,49,64,.8);color:var(--white);font-size:17px;cursor:pointer;
+}
 
 /* ==================== отзывы ==================== */
 .rev-wrap{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;
@@ -871,13 +882,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="sec-title rv trail-stop">Фото и <span class="pw">видео</span></h2>
     <p class="sec-lead rv d1">Живые кадры с игр — больше в Instagram <a href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener">@adrenalinepbc</a></p>
   </div>
-  <!-- ЗАМЕНИТЕ заглушки .ph на <img src="..."> с реальными фото -->
   <div class="gal">
-    <div class="ph v rv"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3V9Z" fill="#3fd6ec" stroke="none"/></svg>ВИДЕО С ИГРЫ</div>
-    <div class="ph rv rv-l d1"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 01</div>
-    <div class="ph rv rv-r d2"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 02</div>
-    <div class="ph rv rv-l d3"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 03</div>
-    <div class="ph rv rv-r d4"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 04</div>
+    <button class="gph v rv" data-full="img/photo-03.webp"><img src="img/photo-03.webp" alt="Игра в пейнтбол в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/photo-01.webp"><img src="img/photo-01.webp" alt="Игроки на арене клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/photo-02.webp"><img src="img/photo-02.webp" alt="Экипировка и снаряжение ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d3" data-full="img/photo-04.webp"><img src="img/photo-04.webp" alt="Пейнтбольная площадка ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-r d4" data-full="img/photo-05.webp"><img src="img/photo-05.webp" alt="Командная игра в ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/photo-06.webp"><img src="img/photo-06.webp" alt="Тактический клуб ADRENALINE Алматы" loading="lazy"></button>
+  </div>
+
+  <!-- лайтбокс -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Просмотр фото">
+    <img id="lightboxImg" src="" alt="">
+    <button class="lb-close" id="lightboxClose" aria-label="Закрыть">✕</button>
   </div>
 </section>
 
@@ -1277,6 +1294,21 @@ document.querySelectorAll('.mission-head').forEach(h => {
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => { q.parentElement.classList.toggle('open'); setTimeout(buildTrail, 500); });
 });
+
+/* ==================== лайтбокс галереи ==================== */
+(function(){
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.gph').forEach(b => b.addEventListener('click', () => {
+    lbImg.src = b.dataset.full;
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }));
+  const close = () => { lb.classList.remove('on'); document.body.style.overflow = ''; };
+  lb.addEventListener('click', e => { if (e.target !== lbImg) close(); });
+  document.getElementById('lightboxClose').addEventListener('click', close);
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 
 /* ==================== форма → WhatsApp + конверсия ==================== */
 document.getElementById('leadForm').addEventListener('submit', function(e){
