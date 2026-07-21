@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ADRENALINE — пейнтбол в Алматы от 6 000 тг | Орбизбол, тир, лук</title>
+<meta name="description" content="Спортивно-тактический клуб ADRENALINE в Алматы. Пейнтбол от 6 000 тг, орбизбол, стрельба из лука, тир. 1400 м² игровых площадок, 3 сценария. Толе би 273/4А. Ежедневно 10:00–02:00.">
+<meta property="og:title" content="ADRENALINE — пейнтбол в Алматы от 6 000 тг">
+<meta property="og:description" content="1400 м² игровых площадок · 3 игровых сценария · пейнтбол, орбизбол, тир, лук · дни рождения и корпоративы">
+<meta property="og:image" content="img/logo.webp">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     GOOGLE TAG MANAGER
+     Замените GTM-XXXXXXX на ваш ID контейнера.
+     Конверсии уходят в dataLayer событиями:
+       click_whatsapp | click_phone | click_route | form_submit
+     В GTM создайте триггеры "Пользовательское событие" с этими
+     именами и привяжите теги Google Ads / GA4.
+============================================================ -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+<!-- Конец Google Tag Manager -->
+
+<style>
+:root{
+  --ink:#071a21;          /* глубокая ночь */
+  --deep:#0b2530;         /* панели */
+  --panel:#0f3140;        /* карточки */
+  --line:#1e4d5e;         /* линии HUD */
+  --steel:#8fb4bf;        /* вторичный текст */
+  --white:#eef7f5;
+  --paint:#3bf07e;        /* краска / орбиз */
+  --paint-dim:#1a8f4c;
+  --cyan:#3fd6ec;
+  --warn:#ffd23f;
+  --font-d:'Unbounded',sans-serif;
+  --font-b:'Manrope',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+  --hud-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+html,body{overscroll-behavior-y:none}
+body{
+  font-family:var(--font-b);
+  background:var(--ink);
+  color:var(--white);
+  overflow-x:hidden;
+  padding-bottom:var(--hud-h);
+}
+::selection{background:var(--paint);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ==================== камуфляжный фон ==================== */
+.camo-bg{
+  position:fixed;inset:0;z-index:-2;background:var(--ink);
+}
+.camo-bg::before{
+  content:'';position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse 320px 190px at 15% 20%, #0d2e3a 0%, transparent 60%),
+    radial-gradient(ellipse 260px 300px at 80% 10%, #0a2530 0%, transparent 60%),
+    radial-gradient(ellipse 380px 220px at 60% 55%, #0e3140 0%, transparent 60%),
+    radial-gradient(ellipse 300px 260px at 20% 80%, #0b2833 0%, transparent 60%),
+    radial-gradient(ellipse 340px 200px at 90% 75%, #0d2d39 0%, transparent 60%);
+  animation:camoDrift 40s ease-in-out infinite alternate;
+}
+@keyframes camoDrift{to{transform:translate(-3%,2%) scale(1.06)}}
+/* сетка HUD */
+.camo-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(63,214,236,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63,214,236,.045) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%);
+}
+
+/* ==================== загрузочный экран ==================== */
+#boot{
+  position:fixed;inset:0;z-index:200;background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;font-family:var(--font-m);transition:opacity .5s, visibility .5s;
+}
+#boot.done{opacity:0;visibility:hidden}
+#boot .boot-logo{width:88px;height:88px;border-radius:50%;
+  animation:bootPulse 1.2s ease-in-out infinite}
+@keyframes bootPulse{50%{transform:scale(1.06);filter:drop-shadow(0 0 18px rgba(59,240,126,.5))}}
+#boot .boot-line{font-size:11px;color:var(--steel);letter-spacing:.14em;min-height:14px}
+#boot .boot-bar{width:210px;height:3px;background:var(--line);overflow:hidden;border-radius:2px}
+#boot .boot-bar i{display:block;height:100%;width:0;background:var(--paint);
+  animation:bootFill 1.4s cubic-bezier(.6,0,.3,1) forwards}
+@keyframes bootFill{to{width:100%}}
+#boot .boot-ready{font-family:var(--font-d);font-weight:900;font-size:13px;
+  color:var(--paint);letter-spacing:.3em;opacity:0;animation:bootReady .3s .9s forwards}
+@keyframes bootReady{to{opacity:1}}
+
+/* ==================== верхний статус-бар ==================== */
+.statusbar{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 14px calc(8px);
+  padding-top:max(8px, env(safe-area-inset-top));
+  font-family:var(--font-m);font-size:9.5px;letter-spacing:.1em;color:var(--steel);
+  background:linear-gradient(rgba(7,26,33,.92), rgba(7,26,33,.6) 70%, transparent);
+  pointer-events:none;
+}
+.statusbar b{color:var(--paint)}
+.statusbar .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--paint);margin-right:5px;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* ==================== прицел, следующий за пальцем ==================== */
+#scope{
+  position:fixed;z-index:80;width:54px;height:54px;pointer-events:none;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;
+  will-change:left,top;
+}
+#scope.on{opacity:.85}
+#scope svg{width:100%;height:100%;animation:scopeSpin 9s linear infinite}
+@keyframes scopeSpin{to{transform:rotate(360deg)}}
+
+/* ==================== кляксы краски ==================== */
+.splat{position:absolute;pointer-events:none;z-index:2;
+  transform:scale(0) rotate(0deg);opacity:0}
+.splat.hit{animation:splatHit .55s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes splatHit{
+  0%{transform:scale(0) rotate(-40deg);opacity:0}
+  60%{opacity:.95}
+  100%{transform:scale(1) rotate(8deg);opacity:.9}
+}
+
+/* ==================== общая типографика секций ==================== */
+.section{position:relative;padding:64px 18px 56px;max-width:640px;margin:0 auto}
+.sec-tag{
+  font-family:var(--font-m);font-size:10px;letter-spacing:.28em;color:var(--cyan);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;text-transform:uppercase;
+}
+.sec-tag::before{content:'';width:26px;height:1px;background:var(--cyan)}
+.sec-title{
+  font-family:var(--font-d);font-weight:900;font-size:clamp(26px,7.4vw,40px);
+  line-height:1.08;text-transform:uppercase;position:relative;display:inline-block;
+  margin-bottom:18px;
+}
+.sec-title .paint-word{color:var(--paint)}
+.sec-lead{color:var(--steel);font-size:15px;line-height:1.65;max-width:52ch}
+
+/* появление при скролле */
+.reveal{opacity:0;transform:translateY(34px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ==================== HERO ==================== */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:90px 18px 110px;position:relative;overflow:hidden;max-width:640px;margin:0 auto;
+}
+.hero .scanline{
+  position:absolute;left:-10%;right:-10%;height:120px;top:-140px;
+  background:linear-gradient(transparent, rgba(59,240,126,.07) 45%, rgba(59,240,126,.16) 50%, rgba(59,240,126,.07) 55%, transparent);
+  animation:scan 5.5s linear infinite;pointer-events:none;
+}
+@keyframes scan{to{top:110%}}
+.hero-logo{width:74px;height:74px;border-radius:50%;margin-bottom:22px;
+  box-shadow:0 0 0 1px var(--line), 0 0 30px rgba(59,240,126,.15)}
+.hero-callsign{font-family:var(--font-m);font-size:11px;color:var(--cyan);
+  letter-spacing:.3em;margin-bottom:10px}
+.hero h1{
+  font-family:var(--font-d);font-weight:900;text-transform:uppercase;
+  font-size:clamp(38px,12vw,64px);line-height:.98;position:relative;
+}
+.hero h1 .glitch{position:relative;display:inline-block}
+.hero h1 .glitch::before,.hero h1 .glitch::after{
+  content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden;
+}
+.hero h1 .glitch::before{color:var(--paint);clip-path:inset(12% 0 58% 0);
+  animation:gl1 3.2s steps(2) infinite}
+.hero h1 .glitch::after{color:var(--cyan);clip-path:inset(62% 0 8% 0);
+  animation:gl2 2.7s steps(2) infinite}
+@keyframes gl1{0%,92%,100%{transform:none;opacity:0}93%,96%{transform:translateX(-4px);opacity:.9}}
+@keyframes gl2{0%,88%,100%{transform:none;opacity:0}90%,94%{transform:translateX(4px);opacity:.9}}
+.hero .sub{margin-top:16px;font-size:16px;line-height:1.5;color:var(--steel);max-width:34ch}
+.hero .sub b{color:var(--white)}
+.hero .offer{
+  margin-top:22px;display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(100deg, rgba(59,240,126,.14), rgba(63,214,236,.08));
+  border:1px solid rgba(59,240,126,.4);border-radius:12px;padding:14px 16px;
+}
+.hero .offer .price{font-family:var(--font-d);font-weight:900;font-size:22px;color:var(--paint)}
+.hero .offer .cap{font-family:var(--font-m);font-size:10px;color:var(--steel);letter-spacing:.08em;line-height:1.5}
+.hero-cta{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.hero-stats{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap}
+.hstat{font-family:var(--font-m)}
+.hstat .n{font-family:var(--font-d);font-weight:900;font-size:24px;color:var(--white)}
+.hstat .n span{color:var(--paint);font-size:15px}
+.hstat .l{font-size:9.5px;color:var(--steel);letter-spacing:.14em;margin-top:3px;text-transform:uppercase}
+
+/* ==================== кнопки ==================== */
+.btn{
+  position:relative;display:flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--font-d);font-weight:700;font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;text-decoration:none;border-radius:12px;
+  padding:16px 18px;overflow:hidden;border:none;cursor:pointer;
+  transition:transform .15s;
+}
+.btn:active{transform:scale(.965)}
+.btn-paint{background:var(--paint);color:#04140b;
+  box-shadow:0 6px 24px rgba(59,240,126,.35)}
+.btn-ghost{background:rgba(15,49,64,.7);color:var(--white);
+  border:1px solid var(--line);backdrop-filter:blur(6px)}
+.btn-cyan{background:transparent;color:var(--cyan);border:1px solid rgba(63,214,236,.5)}
+.btn .ico{width:19px;height:19px;flex:none}
+.btn::after{ /* сплэш при нажатии */
+  content:'';position:absolute;width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.55);opacity:0;transform:scale(0);
+  left:var(--x,50%);top:var(--y,50%);margin:-5px 0 0 -5px;
+}
+.btn.splash::after{animation:btnSplash .5s ease-out}
+@keyframes btnSplash{0%{opacity:.8;transform:scale(0)}100%{opacity:0;transform:scale(18)}}
+
+/* ==================== бегущая строка ==================== */
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(11,37,48,.6);padding:11px 0;position:relative}
+.ticker-track{display:flex;gap:34px;white-space:nowrap;width:max-content;
+  animation:ticker 22s linear infinite;
+  font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--steel);
+  text-transform:uppercase}
+.ticker-track b{color:var(--paint)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* ==================== преимущества ==================== */
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.ben{
+  background:linear-gradient(160deg, var(--panel), var(--deep));
+  border:1px solid var(--line);border-radius:14px;padding:16px 14px;
+  position:relative;overflow:hidden;
+}
+.ben::before{content:'';position:absolute;top:0;left:0;width:22px;height:22px;
+  border-top:2px solid var(--paint);border-left:2px solid var(--paint);
+  border-top-left-radius:12px;opacity:.7}
+.ben .n{font-family:var(--font-d);font-weight:900;font-size:21px;color:var(--paint);line-height:1.1}
+.ben .t{font-size:12.5px;color:var(--steel);margin-top:6px;line-height:1.45}
+.ben.wide{grid-column:1/-1;display:flex;align-items:center;gap:14px}
+.ben.wide .n{font-size:18px}
+
+/* ==================== услуги (операции) ==================== */
+.op{
+  background:linear-gradient(165deg, rgba(15,49,64,.85), rgba(11,37,48,.9));
+  border:1px solid var(--line);border-radius:18px;padding:22px 18px;
+  position:relative;overflow:hidden;margin-top:20px;
+  scroll-margin-top:64px;
+}
+.op::before{content:attr(data-code);position:absolute;top:14px;right:16px;
+  font-family:var(--font-m);font-size:9px;color:rgba(143,180,191,.5);letter-spacing:.2em}
+.op-head{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.op-ico{width:46px;height:46px;flex:none;border-radius:12px;
+  background:rgba(59,240,126,.1);border:1px solid rgba(59,240,126,.35);
+  display:flex;align-items:center;justify-content:center}
+.op-ico svg{width:25px;height:25px}
+.op h3{font-family:var(--font-d);font-weight:700;font-size:19px;text-transform:uppercase;line-height:1.15}
+.op h3 small{display:block;font-family:var(--font-m);font-weight:400;font-size:9.5px;
+  color:var(--cyan);letter-spacing:.22em;margin-top:4px}
+.op p{color:var(--steel);font-size:14px;line-height:1.6;margin-bottom:14px}
+.tarif{display:flex;flex-direction:column;gap:8px}
+.tarif-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:rgba(7,26,33,.55);border:1px solid rgba(30,77,94,.7);
+  border-radius:11px;padding:12px 14px;transition:border-color .25s, transform .25s;
+}
+.tarif-row:active{transform:scale(.985)}
+.tarif-row.hot{border-color:rgba(59,240,126,.55);
+  box-shadow:inset 0 0 22px rgba(59,240,126,.06)}
+.tarif-row .tn{font-weight:800;font-size:14px}
+.tarif-row .tn small{display:block;font-weight:500;font-size:11px;color:var(--steel);margin-top:2px}
+.tarif-row .tp{font-family:var(--font-d);font-weight:900;font-size:16px;color:var(--paint);white-space:nowrap}
+.tarif-row .badge{font-family:var(--font-m);font-size:8.5px;color:var(--warn);
+  letter-spacing:.12em;border:1px solid rgba(255,210,63,.5);border-radius:5px;
+  padding:2px 6px;margin-left:6px;vertical-align:2px}
+.op-note{font-family:var(--font-m);font-size:10.5px;color:var(--steel);
+  margin-top:12px;letter-spacing:.04em;line-height:1.6}
+.op-note b{color:var(--cyan)}
+.op .btn{margin-top:16px;width:100%}
+
+/* чипы событий */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
+.chip{font-family:var(--font-m);font-size:11px;letter-spacing:.06em;
+  border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--white);
+  background:rgba(7,26,33,.5)}
+.chip b{color:var(--paint)}
+
+/* ==================== локации / выбор миссии ==================== */
+.mission{margin-top:20px;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line);background:var(--deep);position:relative}
+.mission-head{display:flex;align-items:center;gap:13px;padding:18px;cursor:pointer;
+  user-select:none}
+.mission-num{font-family:var(--font-d);font-weight:900;font-size:26px;color:rgba(63,214,236,.35);
+  min-width:34px}
+.mission-info{flex:1}
+.mission-info h3{font-family:var(--font-d);font-weight:900;font-size:18px;text-transform:uppercase;color:var(--paint)}
+.mission-info p{font-family:var(--font-m);font-size:10px;color:var(--steel);
+  letter-spacing:.1em;margin-top:4px;text-transform:uppercase;line-height:1.5}
+.mission-arrow{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;transition:transform .35s;flex:none}
+.mission.open .mission-arrow{transform:rotate(180deg);border-color:var(--paint)}
+.mission-body{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.3,.8,.3,1)}
+.mission.open .mission-body{max-height:900px}
+.mission-map{position:relative;margin:0 14px 14px;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line)}
+.mission-map img{width:100%;background:#fff}
+.mission-map::after{ /* эффект сканирования при открытии */
+  content:'';position:absolute;left:0;right:0;height:60px;top:-70px;
+  background:linear-gradient(transparent, rgba(59,240,126,.35), transparent);
+  mix-blend-mode:screen;
+}
+.mission.open .mission-map::after{animation:mapScan 1.1s ease-out .15s}
+@keyframes mapScan{from{top:-70px}to{top:110%}}
+.mission-tags{display:flex;gap:7px;flex-wrap:wrap;padding:0 14px 16px}
+.mission-tags span{font-family:var(--font-m);font-size:9.5px;letter-spacing:.1em;
+  color:var(--cyan);border:1px solid rgba(63,214,236,.35);border-radius:6px;padding:4px 8px}
+
+/* ==================== прайс-баннер и правила ==================== */
+.frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:18px;
+  position:relative}
+.frame img{width:100%}
+.frame .frame-cap{font-family:var(--font-m);font-size:10px;color:var(--steel);
+  letter-spacing:.12em;padding:10px 14px;background:var(--deep);text-transform:uppercase}
+
+/* ==================== галерея ==================== */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}
+.gal .ph{
+  aspect-ratio:1;border-radius:13px;border:1px dashed rgba(63,214,236,.35);
+  background:
+    linear-gradient(160deg, rgba(15,49,64,.6), rgba(7,26,33,.8));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-m);font-size:9.5px;color:var(--steel);letter-spacing:.16em;
+  position:relative;overflow:hidden;
+}
+.gal .ph::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg, transparent 30%, rgba(63,214,236,.08) 50%, transparent 70%);
+  transform:translateX(-100%);animation:shimmer 3s infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.gal .ph.v{grid-column:1/-1;aspect-ratio:16/9}
+.gal svg{width:26px;height:26px;opacity:.6}
+
+/* ==================== отзывы ==================== */
+.rev-wrap{display:flex;gap:12px;overflow-x:auto;margin-top:24px;padding-bottom:8px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.rev-wrap::-webkit-scrollbar{display:none}
+.rev{flex:0 0 84%;scroll-snap-align:start;
+  background:linear-gradient(165deg, var(--panel), var(--deep));
+  border:1px solid var(--line);border-radius:16px;padding:18px}
+.rev .stars{color:var(--warn);letter-spacing:3px;font-size:13px;margin-bottom:10px}
+.rev p{font-size:13.5px;line-height:1.6;color:var(--white)}
+.rev .who{display:flex;align-items:center;gap:10px;margin-top:14px}
+.rev .ava{width:34px;height:34px;border-radius:50%;flex:none;
+  background:rgba(59,240,126,.15);border:1px solid rgba(59,240,126,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-d);font-weight:900;font-size:13px;color:var(--paint)}
+.rev .who b{font-size:13px;display:block}
+.rev .who small{font-family:var(--font-m);font-size:9px;color:var(--steel);letter-spacing:.1em}
+
+/* ==================== форма ==================== */
+.form-card{
+  background:linear-gradient(165deg, rgba(15,49,64,.9), rgba(11,37,48,.95));
+  border:1px solid rgba(59,240,126,.35);border-radius:18px;padding:24px 18px;margin-top:24px;
+  position:relative;overflow:hidden;
+}
+.form-card::before{content:'ЗАЯВКА // ОТРЯД';position:absolute;top:14px;right:16px;
+  font-family:var(--font-m);font-size:8.5px;color:rgba(143,180,191,.45);letter-spacing:.2em}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:var(--font-m);font-size:10px;color:var(--cyan);
+  letter-spacing:.18em;margin-bottom:7px;text-transform:uppercase}
+.field input,.field select{
+  width:100%;background:rgba(7,26,33,.7);border:1px solid var(--line);border-radius:11px;
+  padding:14px;color:var(--white);font-family:var(--font-b);font-size:15px;
+  outline:none;transition:border-color .25s;appearance:none;
+}
+.field input:focus,.field select:focus{border-color:var(--paint)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233bf07e' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.form-ok{display:none;text-align:center;padding:20px 0 6px}
+.form-ok .big{font-family:var(--font-d);font-weight:900;font-size:18px;color:var(--paint);
+  text-transform:uppercase;margin-bottom:8px}
+.form-ok p{color:var(--steel);font-size:13px;line-height:1.6}
+
+/* ==================== контакты ==================== */
+.contact-rows{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;align-items:center;gap:14px;background:var(--deep);
+  border:1px solid var(--line);border-radius:13px;padding:15px;text-decoration:none;
+  transition:border-color .25s}
+.crow:active{border-color:var(--paint)}
+.crow .ci{width:40px;height:40px;flex:none;border-radius:10px;
+  background:rgba(63,214,236,.1);border:1px solid rgba(63,214,236,.3);
+  display:flex;align-items:center;justify-content:center}
+.crow .ci svg{width:20px;height:20px}
+.crow b{font-size:14.5px;display:block}
+.crow small{font-family:var(--font-m);font-size:10px;color:var(--steel);letter-spacing:.06em}
+.map-embed{margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  filter:saturate(.5) brightness(.9)}
+.map-embed iframe{width:100%;height:280px;border:0;display:block}
+
+/* ==================== нижний HUD ==================== */
+.hud{
+  position:fixed;bottom:0;left:0;right:0;z-index:95;height:var(--hud-h);
+  padding-bottom:env(safe-area-inset-bottom);box-sizing:content-box;
+  background:rgba(7,26,33,.88);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:1fr 1fr 1fr 1.35fr;
+}
+.hud a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  text-decoration:none;font-family:var(--font-m);font-size:8.5px;letter-spacing:.1em;
+  color:var(--steel);text-transform:uppercase;position:relative}
+.hud a svg{width:21px;height:21px}
+.hud a.hud-main{
+  background:var(--paint);color:#04140b;font-weight:700;margin:8px 10px;
+  border-radius:11px;flex-direction:row;gap:8px;font-size:10px;
+  box-shadow:0 4px 18px rgba(59,240,126,.4);
+  animation:hudPulse 2.4s ease-in-out infinite;
+}
+@keyframes hudPulse{50%{box-shadow:0 4px 26px rgba(59,240,126,.65)}}
+
+footer{padding:34px 18px calc(30px + var(--hud-h));text-align:center;
+  font-family:var(--font-m);font-size:9.5px;color:rgba(143,180,191,.55);
+  letter-spacing:.12em;line-height:2}
+footer a{color:var(--steel)}
+
+/* десктоп */
+@media(min-width:760px){
+  .section,.hero{max-width:760px}
+  .gal{grid-template-columns:repeat(3,1fr)}
+  .gal .ph.v{grid-column:span 2}
+  .hero-cta{flex-direction:row}
+  .hero-cta .btn{flex:1}
+  .rev{flex-basis:46%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  #boot{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="camo-bg"></div>
+
+<!-- загрузка системы -->
+<div id="boot" aria-hidden="true">
+  <img class="boot-logo" src="img/logo.webp" alt="">
+  <div class="boot-bar"><i></i></div>
+  <div class="boot-line" id="bootLine">ИНИЦИАЛИЗАЦИЯ ТАКТИЧЕСКОЙ СИСТЕМЫ…</div>
+  <div class="boot-ready">СИСТЕМА ГОТОВА</div>
+</div>
+
+<!-- статус-бар -->
+<div class="statusbar">
+  <span><span class="dot"></span>ADRENALINE // <b>ONLINE</b></span>
+  <span>АЛМАТЫ · 43.2485N 76.8660E</span>
+</div>
+
+<!-- прицел -->
+<div id="scope">
+  <svg viewBox="0 0 60 60" fill="none">
+    <circle cx="30" cy="30" r="26" stroke="#3bf07e" stroke-width="1.4" stroke-dasharray="10 7" opacity=".9"/>
+    <circle cx="30" cy="30" r="15" stroke="#3fd6ec" stroke-width="1" opacity=".7"/>
+    <path d="M30 2v12M30 46v12M2 30h12M46 30h12" stroke="#3bf07e" stroke-width="1.6"/>
+    <circle cx="30" cy="30" r="2.4" fill="#3bf07e"/>
+  </svg>
+</div>
+
+<!-- ==================== ГЛАВНЫЙ ЭКРАН ==================== -->
+<header class="hero" id="main">
+  <div class="scanline"></div>
+  <img class="hero-logo reveal in" src="img/logo.webp" alt="Логотип ADRENALINE">
+  <div class="hero-callsign">СПОРТИВНО-ТАКТИЧЕСКИЙ КЛУБ · АЛМАТЫ</div>
+  <h1><span class="glitch" data-t="ADRENALINE">ADRENALINE</span></h1>
+  <p class="sub">Пейнтбол, орбизбол, тир и стрельба из лука на <b>1400 м²</b> игровых площадок. Командный бой начинается здесь.</p>
+
+  <div class="offer">
+    <div>
+      <div class="price">от 6 000 тг</div>
+      <div class="cap">ПЕЙНТБОЛ · ЦЕНА С ЧЕЛОВЕКА<br>ЭКИПИРОВКА ВХОДИТ В СТОИМОСТЬ</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B8%D0%B3%D1%80%D1%83" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-3.2-1-5.3-3.3-6.7-5.9-.6-1.2-.4-2.3.1-3 .3-.4.7-.6 1-.6h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.7c-.1.2-.2.4-.1.6.5.9 1.5 2 2.9 2.7.3.1.5.1.7-.1l.7-.8c.2-.2.4-.3.6-.2l2 .9c.3.2.5.3.5.4.1.1.1.5-.1.9Z"/></svg>
+      Записаться в WhatsApp
+    </a>
+    <a class="btn btn-ghost js-phone" href="tel:+77076525050">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+      Позвонить
+    </a>
+    <a class="btn btn-cyan js-route" href="https://2gis.kz/almaty/firm/70000001102382770" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      Маршрут в 2GIS
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="n"><span data-count="1400">0</span> <span>м²</span></div><div class="l">Площадки</div></div>
+    <div class="hstat"><div class="n"><span data-count="3">0</span></div><div class="l">Сценария</div></div>
+    <div class="hstat"><div class="n">10:00–02:00</div><div class="l">Ежедневно</div></div>
+  </div>
+</header>
+
+<!-- бегущая строка -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>ПЕЙНТБОЛ <b>ОТ 6 000 ТГ</b></span><span>ОРБИЗБОЛ <b>ОТ 5 000 ТГ</b></span>
+    <span>СТРЕЛЬБА ИЗ ЛУКА</span><span>ТИР <b>GLOCK · АК-47 · М4</b></span>
+    <span>ДНИ РОЖДЕНИЯ</span><span>КОРПОРАТИВЫ</span><span>ТИМБИЛДИНГИ</span>
+    <span>ПЕЙНТБОЛ <b>ОТ 6 000 ТГ</b></span><span>ОРБИЗБОЛ <b>ОТ 5 000 ТГ</b></span>
+    <span>СТРЕЛЬБА ИЗ ЛУКА</span><span>ТИР <b>GLOCK · АК-47 · М4</b></span>
+    <span>ДНИ РОЖДЕНИЯ</span><span>КОРПОРАТИВЫ</span><span>ТИМБИЛДИНГИ</span>
+  </div>
+</div>
+
+<!-- ==================== ПРЕИМУЩЕСТВА ==================== -->
+<section class="section" id="benefits">
+  <div class="sec-tag reveal">Почему мы</div>
+  <h2 class="sec-title reveal splat-target">Полигон, где <span class="paint-word">решает команда</span></h2>
+  <p class="sec-lead reveal d1">Не просто площадка, а тактический клуб с тремя разными сценариями боя, снаряжением и инструкторами.</p>
+  <div class="ben-grid">
+    <div class="ben reveal"><div class="n">1400 м²</div><div class="t">игровых площадок под крышей и на открытом воздухе</div></div>
+    <div class="ben reveal d1"><div class="n">3 арены</div><div class="t">Штурм, Лабиринт и Arena Soft — от новичков до ветеранов</div></div>
+    <div class="ben reveal d2"><div class="n">6+</div><div class="t">подходит для детей и взрослых, есть мягкий формат орбизбол</div></div>
+    <div class="ben reveal d3"><div class="n">P</div><div class="t">бесплатная парковка прямо у клуба</div></div>
+    <div class="ben wide reveal d4">
+      <div class="n">Ежедневно 10:00–02:00</div>
+      <div class="t">играем допоздна, по предварительной записи</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== УСЛУГИ ==================== -->
+<section class="section" id="services" style="padding-top:20px">
+  <div class="sec-tag reveal">Выбор снаряжения</div>
+  <h2 class="sec-title reveal splat-target">Наши <span class="paint-word">дисциплины</span></h2>
+
+  <!-- ПЕЙНТБОЛ -->
+  <article class="op reveal" id="paintball" data-code="OP-01 // PAINTBALL">
+    <div class="op-head">
+      <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M3 14h9l2-3h5l2 3v2H3v-2Z"/><path d="M6 14v-3h4"/><circle cx="18" cy="19" r="1.6" fill="#3bf07e" stroke="none"/><circle cx="14" cy="19.5" r="1.2" fill="#3bf07e" stroke="none"/></svg></div>
+      <h3>Пейнтбол<small>КЛАССИКА КОМАНДНОГО БОЯ</small></h3>
+    </div>
+    <p>Полная экипировка входит в стоимость: маркер, маска, защита. Инструктор проводит брифинг и следит за безопасностью.</p>
+    <div class="tarif">
+      <div class="tarif-row"><div class="tn">Курсант<small>100 шаров · экипировка включена</small></div><div class="tp">6 000 тг</div></div>
+      <div class="tarif-row hot"><div class="tn">Сержант<span class="badge">ВЫБОР №1</span><small>200 шаров · экипировка включена</small></div><div class="tp">8 000 тг</div></div>
+      <div class="tarif-row"><div class="tn">Генерал<small>300 шаров · экипировка включена</small></div><div class="tp">9 500 тг</div></div>
+    </div>
+    <div class="op-note">Докупка шаров — <b>25 тг/шт</b> · цена указана за одного игрока</div>
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D0%B9%D0%BD%D1%82%D0%B1%D0%BE%D0%BB" target="_blank" rel="noopener">Забронировать пейнтбол</a>
+  </article>
+
+  <!-- ОРБИЗБОЛ -->
+  <article class="op reveal" id="orbizball" data-code="OP-02 // ORBEEZ">
+    <div class="op-head">
+      <div class="op-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3.4" stroke="#3bf07e" stroke-width="1.7"/><circle cx="15.5" cy="13" r="3.4" stroke="#3fd6ec" stroke-width="1.7"/><circle cx="9.5" cy="17" r="2.6" stroke="#3bf07e" stroke-width="1.7"/></svg></div>
+      <h3>Орбизбол<small>МЯГКИЙ ФОРМАТ · ДЕТИ И НОВИЧКИ</small></h3>
+    </div>
+    <p>Гелевые шарики не оставляют синяков и следов. Идеально для детских праздников и первого «боевого крещения» — играем на арене Arena Soft.</p>
+    <div class="tarif">
+      <div class="tarif-row"><div class="tn">Курсант<small>1 час · 2 магазина</small></div><div class="tp">5 000 тг</div></div>
+      <div class="tarif-row"><div class="tn">Сержант<small>1,5 часа · 4 магазина</small></div><div class="tp">7 000 тг</div></div>
+      <div class="tarif-row hot"><div class="tn">Генерал<span class="badge">ТОП ПРОДАЖ</span><small>2 часа · 6 магазинов</small></div><div class="tp">9 000 тг</div></div>
+    </div>
+    <div class="op-note">Дополнительный магазин — <b>от 1 000 тг</b></div>
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D1%80%D0%B1%D0%B8%D0%B7%D0%B1%D0%BE%D0%BB" target="_blank" rel="noopener">Забронировать орбизбол</a>
+  </article>
+
+  <!-- ЛУК -->
+  <article class="op reveal" id="archery" data-code="OP-03 // ARCHERY">
+    <div class="op-head">
+      <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M4 20 18 6"/><path d="M18 6h-4M18 6v4"/><path d="M6 8a12 12 0 0 1 10 10" stroke="#3fd6ec"/></svg></div>
+      <h3>Стрельба из лука<small>ТОЧНОСТЬ И ВЫДЕРЖКА</small></h3>
+    </div>
+    <p>Аренда лука с инструктажем. Освойте технику выстрела и устройте личный турнир на меткость.</p>
+    <div class="tarif">
+      <div class="tarif-row"><div class="tn">30 минут<small>аренда лука + инструктаж</small></div><div class="tp">3 000 тг</div></div>
+      <div class="tarif-row"><div class="tn">60 минут<small>аренда лука + инструктаж</small></div><div class="tp">5 000 тг</div></div>
+    </div>
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%B1%D1%83%20%D0%B8%D0%B7%20%D0%BB%D1%83%D0%BA%D0%B0" target="_blank" rel="noopener">Забронировать лук</a>
+  </article>
+
+  <!-- ТИР -->
+  <article class="op reveal" id="tir" data-code="OP-04 // RANGE">
+    <div class="op-head">
+      <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5" stroke="#3fd6ec"/><circle cx="12" cy="12" r="1.4" fill="#3bf07e" stroke="none"/></svg></div>
+      <h3>Тир<small>СТРАЙКБОЛЬНОЕ ОРУЖИЕ</small></h3>
+    </div>
+    <p>Пистолеты Glock и ПМ с отдачей, автоматы АК-47 и М4. Базовое обучение с инструктором обязательно при первом посещении.</p>
+    <div class="tarif">
+      <div class="tarif-row"><div class="tn">Пистолет ПМ / Glock<small>3 магазина · 50–60 выстрелов</small></div><div class="tp">4 000 тг</div></div>
+      <div class="tarif-row"><div class="tn">Автомат М4 / АК-47<small>120 выстрелов</small></div><div class="tp">7 000 тг</div></div>
+      <div class="tarif-row hot"><div class="tn">Комбо 1 игрока<small>50 выстр. пистолет + 100 выстр. автомат</small></div><div class="tp">9 000 тг</div></div>
+      <div class="tarif-row"><div class="tn">Комбо усиленное<small>70 выстр. пистолет + 120 выстр. автомат</small></div><div class="tp">11 000 тг</div></div>
+    </div>
+    <div class="op-note">Базовое обучение с инструктором — <b>2 000 тг/чел</b> (при первом посещении)</div>
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%82%D0%B8%D1%80" target="_blank" rel="noopener">Забронировать тир</a>
+  </article>
+
+  <!-- ПРАЗДНИКИ -->
+  <article class="op reveal" id="events" data-code="OP-05 // EVENTS">
+    <div class="op-head">
+      <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M4 21 8 9l7 7-12 5Z"/><path d="M13 5l1-2M17 8l2-1M15 3l4 2-1 3" stroke="#3fd6ec"/></svg></div>
+      <h3>Праздники и события<small>ПОД КЛЮЧ · ЛЮБОЙ ФОРМАТ</small></h3>
+    </div>
+    <p>Организуем событие под ключ: игровые сценарии, инструкторы, зона отдыха. Именинникам — антуражный маркер и маска в подарок.</p>
+    <div class="chips">
+      <span class="chip">🎂 Дни рождения</span>
+      <span class="chip">🏢 Корпоративы</span>
+      <span class="chip">🤝 Тимбилдинги</span>
+      <span class="chip">🧒 Детские праздники</span>
+      <span class="chip">🎓 Выпускные</span>
+      <span class="chip">📚 Школьные и студенческие</span>
+    </div>
+    <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA" target="_blank" rel="noopener">Обсудить праздник</a>
+  </article>
+</section>
+
+<!-- ==================== ЛОКАЦИИ ==================== -->
+<section class="section" id="locations">
+  <div class="sec-tag reveal">Тактические карты</div>
+  <h2 class="sec-title reveal splat-target">Выбор <span class="paint-word">миссии</span></h2>
+  <p class="sec-lead reveal d1">Три арены с разной тактикой. Нажмите на миссию, чтобы изучить карту боя.</p>
+
+  <div class="mission reveal" id="loc-shturm">
+    <div class="mission-head" role="button" tabindex="0" aria-expanded="false">
+      <div class="mission-num">01</div>
+      <div class="mission-info">
+        <h3>«Штурм»</h3>
+        <p>Открытое пространство и динамика. Командный бой, скорость и жёсткие заходы</p>
+      </div>
+      <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-map"><img src="img/map-shturm.webp" alt="Карта арены Штурм" loading="lazy"></div>
+      <div class="mission-tags"><span>СКОРОСТЬ</span><span>ОТКРЫТЫЙ БОЙ</span><span>КОМАНДА</span></div>
+    </div>
+  </div>
+
+  <div class="mission reveal d1" id="loc-labirint">
+    <div class="mission-head" role="button" tabindex="0" aria-expanded="false">
+      <div class="mission-num">02</div>
+      <div class="mission-info">
+        <h3>«Лабиринт»</h3>
+        <p>Узкие проходы, тактика и засады. Идеально для хитрой игры и неожиданных атак</p>
+      </div>
+      <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-map"><img src="img/map-labirint.webp" alt="Карта арены Лабиринт" loading="lazy"></div>
+      <div class="mission-tags"><span>ЗАСАДЫ</span><span>ТАКТИКА</span><span>БЛИЖНИЙ БОЙ</span></div>
+    </div>
+  </div>
+
+  <div class="mission reveal d2" id="loc-arenasoft">
+    <div class="mission-head" role="button" tabindex="0" aria-expanded="false">
+      <div class="mission-num">03</div>
+      <div class="mission-info">
+        <h3>Arena Soft</h3>
+        <p>Лёгкий и безопасный формат игры. Идеально для детей и новичков · орбизбол</p>
+      </div>
+      <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
+    </div>
+    <div class="mission-body">
+      <div class="mission-map"><img src="img/map-arenasoft.webp" alt="Карта арены Arena Soft" loading="lazy"></div>
+      <div class="mission-tags"><span>ДЕТИ 6+</span><span>ОРБИЗБОЛ</span><span>БЕЗОПАСНО</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ПРАЙС + АРЕНДА ==================== -->
+<section class="section" id="prices" style="padding-top:20px">
+  <div class="sec-tag reveal">Боекомплект</div>
+  <h2 class="sec-title reveal splat-target">Полный <span class="paint-word">прайс</span></h2>
+  <p class="sec-lead reveal d1">Все тарифы на одном экране — сохраните себе или отправьте другу.</p>
+  <div class="frame reveal d2">
+    <img src="img/prices-banner.webp" alt="Прайс-лист ADRENALINE: пейнтбол, орбизбол, стрельбы из лука, тир, аренда оборудования" loading="lazy">
+    <div class="frame-cap">Аренда доп. оборудования: маркер антуражный 500 тг · маска 500 тг · перчатки 200 тг — на днях рождения маркер и маска бесплатно</div>
+  </div>
+  <div class="frame reveal d3" id="rules">
+    <img src="img/rules.webp" alt="Правила безопасности игры в пейнтбол" loading="lazy">
+    <div class="frame-cap">Безопасность — превыше всего: маска всегда на лице, минимальная дистанция 3 метра</div>
+  </div>
+</section>
+
+<!-- ==================== ГАЛЕРЕЯ ==================== -->
+<section class="section" id="gallery" style="padding-top:20px">
+  <div class="sec-tag reveal">Полевые сводки</div>
+  <h2 class="sec-title reveal splat-target">Фото и <span class="paint-word">видео</span></h2>
+  <p class="sec-lead reveal d1">Живые кадры с игр — больше в нашем Instagram <a href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener" style="color:var(--paint)">@adrenalinepbc</a></p>
+  <!-- ЗАМЕНИТЕ заглушки .ph на <img src="..."> с реальными фото из папки клиента -->
+  <div class="gal">
+    <div class="ph v reveal"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3V9Z" fill="#3fd6ec" stroke="none"/></svg>ВИДЕО С ИГРЫ</div>
+    <div class="ph reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 01</div>
+    <div class="ph reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 02</div>
+    <div class="ph reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 03</div>
+    <div class="ph reveal d4"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 19 5-5 3 3 4-4 2 2"/></svg>ФОТО 04</div>
+  </div>
+</section>
+
+<!-- ==================== ОТЗЫВЫ ==================== -->
+<section class="section" id="reviews" style="padding-top:20px">
+  <div class="sec-tag reveal">Рапорты бойцов</div>
+  <h2 class="sec-title reveal splat-target">Отзывы <span class="paint-word">клиентов</span></h2>
+  <div class="rev-wrap">
+    <div class="rev reveal">
+      <div class="stars">★★★★★</div>
+      <p>Отмечали день рождения сына — 12 детей, орбизбол на Arena Soft. Никто не ушёл без эмоций, инструкторы всё держали под контролем. Именинник получил маркер бесплатно!</p>
+      <div class="who"><div class="ava">А</div><div><b>Айгерим</b><small>ДЕТСКИЙ ПРАЗДНИК</small></div></div>
+    </div>
+    <div class="rev reveal d1">
+      <div class="stars">★★★★★</div>
+      <p>Играли корпоративом 20 человек, сценарий «Штурм» — это огонь. Динамика бешеная, площадка большая, парковка своя. Придём ещё на «Лабиринт».</p>
+      <div class="who"><div class="ava">Д</div><div><b>Данияр</b><small>КОРПОРАТИВ</small></div></div>
+    </div>
+    <div class="rev reveal d2">
+      <div class="stars">★★★★★</div>
+      <p>Тир — отдельный кайф. Glock с отдачей ощущается очень реалистично, инструктор всё показал. Взяли комбо на двоих, время пролетело незаметно.</p>
+      <div class="who"><div class="ava">М</div><div><b>Мадина</b><small>ТИР</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ФОРМА ==================== -->
+<section class="section" id="form" style="padding-top:20px">
+  <div class="sec-tag reveal">Мобилизация</div>
+  <h2 class="sec-title reveal splat-target">Собери свой <span class="paint-word">отряд</span></h2>
+  <p class="sec-lead reveal d1">Оставьте заявку — перезвоним в течение 15 минут и подберём время игры.</p>
+
+  <div class="form-card reveal d2">
+    <form id="leadForm" novalidate>
+      <div class="field">
+        <label for="fName">Позывной / имя</label>
+        <input id="fName" name="name" type="text" placeholder="Как к вам обращаться" required>
+      </div>
+      <div class="field">
+        <label for="fPhone">Телефон</label>
+        <input id="fPhone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" inputmode="tel" required>
+      </div>
+      <div class="field">
+        <label for="fService">Дисциплина</label>
+        <select id="fService" name="service">
+          <option>Пейнтбол</option>
+          <option>Орбизбол</option>
+          <option>Стрельба из лука</option>
+          <option>Тир</option>
+          <option>День рождения / праздник</option>
+          <option>Корпоратив / тимбилдинг</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-paint" style="width:100%">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 12 18-8-8 18-2-8-8-2Z"/></svg>
+        Отправить заявку
+      </button>
+    </form>
+    <div class="form-ok" id="formOk">
+      <div class="big">✔ Заявка принята</div>
+      <p>Сейчас откроется WhatsApp с вашими данными — просто нажмите «Отправить».<br>Мы свяжемся с вами в течение 15 минут.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== КОНТАКТЫ ==================== -->
+<section class="section" id="contacts" style="padding-top:20px">
+  <div class="sec-tag reveal">Координаты базы</div>
+  <h2 class="sec-title reveal splat-target">Как нас <span class="paint-word">найти</span></h2>
+  <div class="contact-rows">
+    <a class="crow js-route reveal" href="https://2gis.kz/almaty/firm/70000001102382770" target="_blank" rel="noopener">
+      <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.7"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+      <div><b>г. Алматы, ул. Толе би 273/4А</b><small>ЖК «ЖАЙЛЫ» · МАРШРУТ В 2GIS</small></div>
+    </a>
+    <a class="crow js-phone reveal d1" href="tel:+77076525050">
+      <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.7"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></div>
+      <div><b>+7 707 652 50 50</b><small>ЗВОНОК · ЕЖЕДНЕВНО 10:00–02:00</small></div>
+    </a>
+    <a class="crow js-wa reveal d2" href="https://wa.me/77076525050" target="_blank" rel="noopener">
+      <div class="ci"><svg viewBox="0 0 24 24" fill="#3bf07e"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-3.2-1-5.3-3.3-6.7-5.9-.6-1.2-.4-2.3.1-3 .3-.4.7-.6 1-.6h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.7c-.1.2-.2.4-.1.6.5.9 1.5 2 2.9 2.7.3.1.5.1.7-.1l.7-.8c.2-.2.4-.3.6-.2l2 .9c.3.2.5.3.5.4.1.1.1.5-.1.9Z"/></svg></div>
+      <div><b>WhatsApp</b><small>+7 707 652 50 50 · БЫСТРАЯ ЗАПИСЬ</small></div>
+    </a>
+    <a class="crow reveal d3" href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener">
+      <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#3fd6ec" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="#3fd6ec" stroke="none"/></svg></div>
+      <div><b>@adrenalinepbc</b><small>INSTAGRAM · ФОТО И ВИДЕО С ИГР</small></div>
+    </a>
+  </div>
+  <div class="map-embed reveal d3" id="map">
+    <iframe src="https://www.google.com/maps?q=%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%2C%20%D0%A2%D0%BE%D0%BB%D0%B5%20%D0%B1%D0%B8%20273%2F4%D0%B0&output=embed" loading="lazy" title="Карта проезда ADRENALINE" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<footer>
+  ADRENALINE — СПОРТИВНО-ТАКТИЧЕСКИЙ КЛУБ<br>
+  г. Алматы, ул. Толе би 273/4А · <a href="tel:+77076525050" class="js-phone">+7 707 652 50 50</a><br>
+  © 2026 · ЕЖЕДНЕВНО 10:00–02:00 ПО ПРЕДВАРИТЕЛЬНОЙ ЗАПИСИ
+</footer>
+
+<!-- нижний HUD -->
+<nav class="hud" aria-label="Быстрые действия">
+  <a class="js-phone" href="tel:+77076525050">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+    Звонок
+  </a>
+  <a class="js-route" href="https://2gis.kz/almaty/firm/70000001102382770" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+    2GIS
+  </a>
+  <a href="#prices">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    Прайс
+  </a>
+  <a class="hud-main js-wa" href="https://wa.me/77076525050?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B8%D0%B3%D1%80%D1%83" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-3.2-1-5.3-3.3-6.7-5.9-.6-1.2-.4-2.3.1-3 .3-.4.7-.6 1-.6h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.7c-.1.2-.2.4-.1.6.5.9 1.5 2 2.9 2.7.3.1.5.1.7-.1l.7-.8c.2-.2.4-.3.6-.2l2 .9c.3.2.5.3.5.4.1.1.1.5-.1.9Z"/></svg>
+    Записаться
+  </a>
+</nav>
+
+<script>
+/* ==================== аналитика конверсий ==================== */
+window.dataLayer = window.dataLayer || [];
+function track(ev, extra){
+  window.dataLayer.push(Object.assign({event: ev}, extra || {}));
+  /* Если подключите gtag напрямую (Google Ads), добавьте сюда:
+     gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXXX/XXXXXXX'}); */
+}
+document.querySelectorAll('.js-wa').forEach(el =>
+  el.addEventListener('click', () => track('click_whatsapp')));
+document.querySelectorAll('.js-phone').forEach(el =>
+  el.addEventListener('click', () => track('click_phone')));
+document.querySelectorAll('.js-route').forEach(el =>
+  el.addEventListener('click', () => track('click_route')));
+
+/* ==================== загрузочный экран ==================== */
+(function(){
+  const boot = document.getElementById('boot');
+  const line = document.getElementById('bootLine');
+  const msgs = ['ИНИЦИАЛИЗАЦИЯ ТАКТИЧЕСКОЙ СИСТЕМЫ…','ЗАГРУЗКА КАРТ ПОЛИГОНА…','ПРОВЕРКА СНАРЯЖЕНИЯ…','СВЯЗЬ С БАЗОЙ УСТАНОВЛЕНА'];
+  let i = 0;
+  const t = setInterval(() => { i++; if (msgs[i]) line.textContent = msgs[i]; }, 340);
+  setTimeout(() => { clearInterval(t); boot.classList.add('done'); }, 1550);
+})();
+
+/* ==================== прицел следует за пальцем/мышью ==================== */
+(function(){
+  const scope = document.getElementById('scope');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let tx = innerWidth/2, ty = innerHeight/2, x = tx, y = ty, raf;
+  function move(px, py){ tx = px; ty = py; scope.classList.add('on');
+    if (!raf) raf = requestAnimationFrame(step); }
+  function step(){
+    x += (tx - x) * .16; y += (ty - y) * .16;
+    scope.style.left = x + 'px'; scope.style.top = y + 'px';
+    raf = (Math.abs(tx-x) > .4 || Math.abs(ty-y) > .4) ? requestAnimationFrame(step) : null;
+  }
+  addEventListener('mousemove', e => move(e.clientX, e.clientY), {passive:true});
+  addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  addEventListener('touchstart', e => move(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  addEventListener('touchend', () => setTimeout(() => scope.classList.remove('on'), 900));
+})();
+
+/* ==================== появление секций + кляксы + счётчики ==================== */
+(function(){
+  const splatSVG = (c) => `<svg viewBox="0 0 100 100" width="58" height="58" fill="${c}" opacity=".9">
+    <path d="M50 12c6 0 8 7 13 9s13-3 16 3-4 10-3 16 9 8 7 15-10 4-14 9 0 13-7 15-9-6-15-6-9 7-16 5-4-10-8-15-13-2-14-9 7-9 8-15-6-11-2-16 11 0 16-2 7-9 13-9Z"/>
+    <circle cx="83" cy="30" r="4"/><circle cx="18" cy="72" r="3.4"/><circle cx="76" cy="80" r="3"/></svg>`;
+  const colors = ['#3bf07e','#3fd6ec','#ffd23f'];
+  let ci = 0;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      /* клякса в заголовок */
+      if (en.target.classList.contains('splat-target') && !en.target.dataset.splatted){
+        en.target.dataset.splatted = 1;
+        const s = document.createElement('span');
+        s.className = 'splat';
+        s.innerHTML = splatSVG(colors[ci++ % colors.length]);
+        s.style.right = '-26px'; s.style.top = '-22px'; s.style.zIndex = '-1';
+        en.target.appendChild(s);
+        setTimeout(() => s.classList.add('hit'), 250);
+      }
+      /* счётчики */
+      en.target.querySelectorAll('[data-count]').forEach(n => {
+        if (n.dataset.done) return; n.dataset.done = 1;
+        const end = +n.dataset.count, t0 = performance.now(), dur = 1200;
+        (function tick(t){
+          const p = Math.min((t - t0)/dur, 1);
+          n.textContent = Math.round(end * (1 - Math.pow(1-p, 3))).toLocaleString('ru-RU');
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+      io.unobserve(en.target);
+    });
+  }, {threshold:.18});
+  document.querySelectorAll('.reveal, .hero-stats, .splat-target').forEach(el => io.observe(el));
+})();
+
+/* ==================== сплэш на кнопках ==================== */
+document.querySelectorAll('.btn').forEach(b => {
+  b.addEventListener('pointerdown', e => {
+    const r = b.getBoundingClientRect();
+    b.style.setProperty('--x', (e.clientX - r.left) + 'px');
+    b.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    b.classList.remove('splash'); void b.offsetWidth; b.classList.add('splash');
+  });
+});
+
+/* ==================== аккордеон миссий ==================== */
+document.querySelectorAll('.mission-head').forEach(h => {
+  const toggle = () => {
+    const m = h.parentElement;
+    const open = m.classList.toggle('open');
+    h.setAttribute('aria-expanded', open);
+  };
+  h.addEventListener('click', toggle);
+  h.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+});
+/* автооткрытие первой миссии при попадании секции в кадр */
+new IntersectionObserver((en, obs) => {
+  if (en[0].isIntersecting){
+    document.getElementById('loc-shturm').classList.add('open');
+    obs.disconnect();
+  }
+}, {threshold:.4}).observe(document.getElementById('locations'));
+
+/* ==================== форма → WhatsApp + конверсия ==================== */
+document.getElementById('leadForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = this.name.value.trim();
+  const phone = this.phone.value.trim();
+  const service = this.service.value;
+  if (!name || phone.replace(/\D/g,'').length < 10){
+    (!name ? this.name : this.phone).focus();
+    (!name ? this.name : this.phone).style.borderColor = '#ff5c5c';
+    return;
+  }
+  track('form_submit', {service: service});
+  const msg = encodeURIComponent(`Заявка с сайта ADRENALINE\nИмя: ${name}\nТелефон: ${phone}\nУслуга: ${service}`);
+  this.style.display = 'none';
+  document.getElementById('formOk').style.display = 'block';
+  setTimeout(() => open('https://wa.me/77076525050?text=' + msg, '_blank'), 600);
+});
+document.querySelectorAll('#leadForm input').forEach(i =>
+  i.addEventListener('input', () => i.style.borderColor = ''));
+</script>
+</body>
+</html>
