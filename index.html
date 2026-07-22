@@ -186,7 +186,8 @@ a{color:inherit}
   background:linear-gradient(100deg, rgba(59,240,126,.13), rgba(63,214,236,.08));
   border:1px solid rgba(59,240,126,.4);border-radius:14px;padding:14px 26px;
 }
-.hero .offer .price{font-family:var(--font-d);font-weight:900;font-size:23px;color:var(--paint)}
+.hero .offer .price{font-family:var(--font-d);font-weight:900;font-size:16.5px;color:var(--paint);
+  text-transform:uppercase;line-height:1.35}
 .hero .offer .cap{font-family:var(--font-m);font-size:9.5px;color:var(--steel);letter-spacing:.1em;line-height:1.6}
 .hero-cta{display:flex;flex-direction:column;gap:10px;margin-top:26px;width:100%;max-width:360px}
 .hero-stats{display:flex;justify-content:center;gap:26px;margin-top:32px;flex-wrap:wrap}
@@ -249,39 +250,28 @@ a{color:inherit}
 .ben.wide{grid-column:1/-1}
 .ben.wide .n{font-size:18px}
 
-/* ==================== сторителлинг «Как проходит игра» ==================== */
-.story{position:relative;z-index:1}
-.story-track{height:420vh;position:relative}
-.story-sticky{
-  position:sticky;top:0;height:100svh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;overflow:hidden;padding:70px 18px 90px;
+/* ==================== шаги «Как проходит игра» ==================== */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.step{
+  background:linear-gradient(160deg, var(--panel), var(--deep));
+  border:1px solid var(--line);border-radius:14px;padding:20px 14px 18px;
+  text-align:center;position:relative;overflow:hidden;
 }
-.story-stage{position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;padding:0 26px;
-  opacity:0;transform:translateY(40px) scale(.96);
-  transition:opacity .5s, transform .5s;pointer-events:none}
-.story-stage.on{opacity:1;transform:none}
-.story-stage .big-num{
-  font-family:var(--font-d);font-weight:900;font-size:clamp(90px,30vw,150px);
-  line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(63,214,236,.4);
-  position:relative;
+.step-num{
+  position:absolute;top:8px;right:12px;font-family:var(--font-d);font-weight:900;
+  font-size:30px;color:transparent;-webkit-text-stroke:1px rgba(63,214,236,.35);
+  line-height:1;
 }
-.story-stage .big-num::after{content:attr(data-n);position:absolute;left:0;top:0;width:100%;
-  color:var(--paint);-webkit-text-stroke:0;clip-path:inset(0 0 var(--fill,100%) 0);
-  transition:clip-path .5s}
-.story-stage.on .big-num::after{--fill:34%}
-.story-stage h3{font-family:var(--font-d);font-weight:700;font-size:21px;text-transform:uppercase;margin-top:14px}
-.story-stage p{color:var(--steel);font-size:14.5px;line-height:1.65;margin-top:12px;max-width:34ch}
-.story-stage .st-ico{width:58px;height:58px;border-radius:16px;margin-bottom:18px;
+.step .st-ico{width:48px;height:48px;border-radius:13px;margin:0 auto 12px;
   background:rgba(59,240,126,.1);border:1px solid rgba(59,240,126,.35);
   display:flex;align-items:center;justify-content:center}
-.story-stage .st-ico svg{width:30px;height:30px}
-.story-dots{position:absolute;right:16px;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:12px}
-.story-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:all .3s}
-.story-dots i.on{background:var(--paint);box-shadow:0 0 8px rgba(59,240,126,.8);height:20px;border-radius:4px}
-.story-header{position:absolute;top:60px;left:0;right:0;text-align:center;
-  padding-top:env(safe-area-inset-top)}
+.step .st-ico svg{width:26px;height:26px}
+.step b{font-family:var(--font-d);font-weight:700;font-size:14px;text-transform:uppercase;display:block}
+.step p{color:var(--steel);font-size:12px;line-height:1.5;margin-top:7px}
+.step::after{ /* соединительная точка между шагами */
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:38px;height:2px;background:var(--paint);border-radius:3px 3px 0 0;opacity:.7;
+}
 
 /* ==================== услуги ==================== */
 .op{
@@ -578,8 +568,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1><span class="glitch" data-t="ADRENALINE">ADRENALINE</span></h1>
     <p class="sub" style="margin-left:auto;margin-right:auto">Пейнтбол, орбизбол, тир и стрельба из лука на <b>1400 м²</b> игровых площадок</p>
     <div class="offer">
-      <div class="price">от 6 000 тг</div>
-      <div class="cap">ПЕЙНТБОЛ · ЦЕНА С ЧЕЛОВЕКА · ЭКИПИРОВКА ВКЛЮЧЕНА</div>
+      <div class="price">Запишись сейчас — играй уже сегодня</div>
+      <div class="cap">РАБОТАЕМ ДО 02:00 · ЭКИПИРОВКА И ИНСТРУКТОР ВКЛЮЧЕНЫ · АРЕНДА АРЕНЫ НЕ НУЖНА</div>
     </div>
     <div class="hero-cta">
       <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B8%D0%B3%D1%80%D1%83" target="_blank" rel="noopener">
@@ -634,43 +624,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ==================== СТОРИТЕЛЛИНГ: КАК ПРОХОДИТ ИГРА ==================== -->
-<section class="story" id="howto">
-  <div class="story-track" id="storyTrack">
-    <div class="story-sticky">
-      <div class="story-header">
-        <div class="sec-tag">Как проходит игра</div>
-      </div>
-
-      <div class="story-stage on" data-stage="0">
-        <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6" stroke="#3fd6ec"/></svg></div>
-        <div class="big-num" data-n="01">01</div>
-        <h3>Сбор отряда</h3>
-        <p>Приезжаете командой от 4 человек. Встречаем, знакомим с клубом и выдаём полную экипировку: маркер, маску, защиту.</p>
-      </div>
-
-      <div class="story-stage" data-stage="1">
-        <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4" stroke="#3fd6ec"/></svg></div>
-        <div class="big-num" data-n="02">02</div>
-        <h3>Брифинг</h3>
-        <p>Инструктор проводит инструктаж по безопасности: маска всегда на лице, дистанция 3 метра, один выстрел — одно нажатие.</p>
-      </div>
-
-      <div class="story-stage" data-stage="2">
-        <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4" stroke="#3fd6ec"/><circle cx="12" cy="12" r="1.2" fill="#3bf07e" stroke="none"/></svg></div>
-        <div class="big-num" data-n="03">03</div>
-        <h3>Бой</h3>
-        <p>«3, 2, 1 — игра началась!» Захват флага, штурм базы или засады в лабиринте — сценарий выбираете вы.</p>
-      </div>
-
-      <div class="story-stage" data-stage="3">
-        <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M8 21h8M12 17v4M17 4H7v5a5 5 0 0 0 10 0V4Z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3" stroke="#3fd6ec"/></svg></div>
-        <div class="big-num" data-n="04">04</div>
-        <h3>Победа</h3>
-        <p>Разбор боя, фото на память и отдых в зоне отдыха. Проигравшая команда покупает лимонад — правило клуба.</p>
-      </div>
-
-      <div class="story-dots" id="storyDots"><i class="on"></i><i></i><i></i><i></i></div>
+<!-- ==================== КАК ПРОХОДИТ ИГРА (компактно) ==================== -->
+<section class="section" id="howto">
+  <div class="sec-head">
+    <div class="sec-tag rv">15 минут от звонка до боя</div>
+    <h2 class="sec-title rv trail-stop">Как проходит <span class="pw">игра</span></h2>
+  </div>
+  <div class="steps">
+    <div class="step rv rv-l">
+      <div class="step-num">01</div>
+      <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6" stroke="#3fd6ec"/></svg></div>
+      <b>Сбор отряда</b>
+      <p>Приезжаете командой, выдаём полную экипировку</p>
+    </div>
+    <div class="step rv rv-r d1">
+      <div class="step-num">02</div>
+      <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4" stroke="#3fd6ec"/></svg></div>
+      <b>Брифинг</b>
+      <p>Инструктаж по безопасности и выбор сценария</p>
+    </div>
+    <div class="step rv rv-l d2">
+      <div class="step-num">03</div>
+      <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4" stroke="#3fd6ec"/><circle cx="12" cy="12" r="1.2" fill="#3bf07e" stroke="none"/></svg></div>
+      <b>Бой</b>
+      <p>«3, 2, 1 — игра началась!» Захват флага или штурм базы</p>
+    </div>
+    <div class="step rv rv-r d3">
+      <div class="step-num">04</div>
+      <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M8 21h8M12 17v4M17 4H7v5a5 5 0 0 0 10 0V4Z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3" stroke="#3fd6ec"/></svg></div>
+      <b>Победа</b>
+      <p>Разбор боя, фото на память и зона отдыха</p>
     </div>
   </div>
 </section>
@@ -858,18 +841,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="rent-gift rv">🎁 НА ДНЯХ РОЖДЕНИЯ АНТУРАЖНЫЙ МАРКЕР И МАСКА — БЕСПЛАТНО</div>
 </section>
 
-<!-- ==================== ПРАЙС + ПРАВИЛА ==================== -->
-<section class="section" id="prices" style="padding-top:30px">
+<!-- ==================== ПРАВИЛА БЕЗОПАСНОСТИ ==================== -->
+<section class="section" id="rules" style="padding-top:30px">
   <div class="sec-head">
-    <div class="sec-tag rv">Боекомплект</div>
-    <h2 class="sec-title rv trail-stop">Полный <span class="pw">прайс</span></h2>
-    <p class="sec-lead rv d1">Все тарифы на одном экране — сохраните или отправьте другу</p>
+    <div class="sec-tag rv">Техника безопасности</div>
+    <h2 class="sec-title rv trail-stop">Правила <span class="pw">игры</span></h2>
+    <p class="sec-lead rv d1">Инструктор проведёт полный брифинг перед боем — а это шпаргалка</p>
   </div>
   <div class="frame rv rv-s">
-    <img src="img/prices-banner.webp" alt="Прайс-лист ADRENALINE: пейнтбол, орбизбол, стрельбы из лука, тир, аренда" loading="lazy">
-    <div class="frame-cap">Цены на все дисциплины и аренду оборудования</div>
-  </div>
-  <div class="frame rv rv-s" id="rules">
     <img src="img/rules.webp" alt="Правила безопасности игры в пейнтбол" loading="lazy">
     <div class="frame-cap">Безопасность — превыше всего · маска всегда на лице · дистанция 3 метра</div>
   </div>
@@ -1037,7 +1016,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
     2GIS
   </a>
-  <a href="#prices">
+  <a href="#services">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
     Прайс
   </a>
@@ -1171,9 +1150,6 @@ function onScroll(){
       if (!s.done && p >= s.frac - .005){ s.done = true; s.el.classList.add('hit'); }
     });
   }
-
-  /* сторителлинг */
-  storyScroll();
 }
 
 let scrollTick = false;
@@ -1181,21 +1157,6 @@ addEventListener('scroll', () => {
   if (!scrollTick){ scrollTick = true;
     requestAnimationFrame(() => { onScroll(); scrollTick = false; }); }
 }, {passive:true});
-
-/* ==================== сторителлинг «Как проходит игра» ==================== */
-const storyTrack = document.getElementById('storyTrack');
-const stages = document.querySelectorAll('.story-stage');
-const dots = document.querySelectorAll('#storyDots i');
-function storyScroll(){
-  if (REDUCED) return;
-  const r = storyTrack.getBoundingClientRect();
-  const total = r.height - innerHeight;
-  if (total <= 0) return;
-  const p = Math.min(Math.max(-r.top / total, 0), .999);
-  const idx = Math.floor(p * stages.length);
-  stages.forEach((s, i) => s.classList.toggle('on', i === idx));
-  dots.forEach((d, i) => d.classList.toggle('on', i === idx));
-}
 
 /* ==================== появление блоков + счётчики ==================== */
 const io = new IntersectionObserver(entries => {
