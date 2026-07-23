@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ADRENALINE — пейнтбол в Алматы от 6 000 тг | Орбизбол, тир, лук</title>
+<title>ADRENALINE - пейнтбол в Алматы от 6 000 тг | Орбизбол, тир, лук</title>
 <meta name="description" content="Спортивно-тактический клуб ADRENALINE в Алматы. Пейнтбол от 6 000 тг, орбизбол, стрельба из лука, тир. 1400 м² игровых площадок, 3 сценария. Толе би 273/4А. Ежедневно 10:00–02:00.">
-<meta property="og:title" content="ADRENALINE — пейнтбол в Алматы от 6 000 тг">
+<meta property="og:title" content="ADRENALINE - пейнтбол в Алматы от 6 000 тг">
 <meta property="og:description" content="1400 м² игровых площадок · 3 игровых сценария · пейнтбол, орбизбол, тир, лук · дни рождения и корпоративы">
 <meta property="og:image" content="img/logo.webp">
 <meta property="og:type" content="website">
@@ -92,8 +92,8 @@ a{color:inherit}
 .trail-splat.hit{animation:tSplat .55s cubic-bezier(.2,1.7,.4,1) forwards}
 @keyframes tSplat{
   0%{transform:scale(0) rotate(-50deg);opacity:0}
-  60%{opacity:1}
-  100%{transform:scale(1) rotate(0);opacity:.95}
+  60%{opacity:.7}
+  100%{transform:scale(1) rotate(0);opacity:.45}
 }
 
 /* ==================== загрузочный экран ==================== */
@@ -143,7 +143,7 @@ a{color:inherit}
 .sec-lead{color:var(--steel);font-size:15px;line-height:1.65;margin-top:12px;max-width:46ch;margin-left:auto;margin-right:auto}
 .sec-lead a{color:var(--paint)}
 
-/* появление при скролле — чередование направлений */
+/* появление при скролле - чередование направлений */
 .rv{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.rv-l{transform:translateX(-42px)}
 .rv.rv-r{transform:translateX(42px)}
@@ -189,7 +189,7 @@ a{color:inherit}
 .hero .offer .price{font-family:var(--font-d);font-weight:900;font-size:16.5px;color:var(--paint);
   text-transform:uppercase;line-height:1.35}
 .hero .offer .cap{font-family:var(--font-m);font-size:9.5px;color:var(--steel);letter-spacing:.1em;line-height:1.6}
-.hero-cta{display:flex;flex-direction:column;gap:10px;margin-top:26px;width:100%;max-width:360px}
+.hero-cta{display:flex;flex-direction:column;gap:10px;margin-top:26px;width:100%;max-width:360px;margin-left:auto;margin-right:auto}
 .hero-stats{display:flex;justify-content:center;gap:26px;margin-top:32px;flex-wrap:wrap}
 .hstat{font-family:var(--font-m);text-align:center}
 .hstat .n{font-family:var(--font-d);font-weight:900;font-size:22px;color:var(--white)}
@@ -307,7 +307,7 @@ a{color:inherit}
 .op-note{font-family:var(--font-m);font-size:10.5px;color:var(--steel);
   margin-top:12px;letter-spacing:.04em;line-height:1.6;text-align:center}
 .op-note b{color:var(--cyan)}
-.op .btn{margin-top:16px;width:100%}
+.op .btn{margin-top:16px;width:100%;max-width:360px;margin-left:auto;margin-right:auto}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px;justify-content:center}
 .chip{font-family:var(--font-m);font-size:11px;letter-spacing:.06em;
   border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--white);
@@ -337,7 +337,7 @@ a{color:inherit}
 .quiz-res .qr-label{font-family:var(--font-m);font-size:10px;color:var(--cyan);letter-spacing:.24em;margin:14px 0 8px}
 .quiz-res .qr-title{font-family:var(--font-d);font-weight:900;font-size:26px;color:var(--paint);text-transform:uppercase}
 .quiz-res p{color:var(--steel);font-size:14px;line-height:1.6;margin:12px auto 18px;max-width:36ch}
-.quiz-res .btn{width:100%}
+.quiz-res .btn{width:100%;max-width:360px;margin-left:auto;margin-right:auto}
 .quiz-res .qr-again{margin-top:12px;font-family:var(--font-m);font-size:10.5px;color:var(--steel);
   background:none;border:none;letter-spacing:.14em;text-decoration:underline;cursor:pointer}
 
@@ -354,7 +354,7 @@ a{color:inherit}
   display:flex;align-items:center;justify-content:center;transition:transform .35s;flex:none}
 .mission.open .mission-arrow{transform:rotate(180deg);border-color:var(--paint)}
 .mission-body{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.3,.8,.3,1)}
-.mission.open .mission-body{max-height:900px}
+.mission.open .mission-body{max-height:1300px}
 .mission-map{position:relative;margin:0 14px 14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 .mission-map img{width:100%;background:#fff}
 .mission-map::after{
@@ -363,6 +363,15 @@ a{color:inherit}
 }
 .mission.open .mission-map::after{animation:mapScan 1.1s ease-out .15s}
 @keyframes mapScan{from{top:-70px}to{top:110%}}
+.mission-photos{display:flex;gap:8px;overflow-x:auto;padding:0 14px 12px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.mission-photos::-webkit-scrollbar{display:none}
+.mission-photos .mph{
+  flex:0 0 62%;aspect-ratio:4/3;border-radius:11px;overflow:hidden;
+  border:1px solid var(--line);padding:0;background:var(--deep);cursor:pointer;
+  scroll-snap-align:start;
+}
+.mission-photos .mph img{width:100%;height:100%;object-fit:cover}
 .mission-tags{display:flex;gap:7px;flex-wrap:wrap;padding:0 14px 16px;justify-content:center}
 .mission-tags span{font-family:var(--font-m);font-size:9.5px;letter-spacing:.1em;
   color:var(--cyan);border:1px solid rgba(63,214,236,.35);border-radius:6px;padding:4px 8px}
@@ -482,9 +491,8 @@ a{color:inherit}
 .crow .ci svg{width:20px;height:20px}
 .crow b{font-size:14.5px;display:block}
 .crow small{font-family:var(--font-m);font-size:10px;color:var(--steel);letter-spacing:.06em}
-.map-embed{margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);
-  filter:saturate(.5) brightness(.9)}
-.map-embed iframe{width:100%;height:280px;border:0;display:block}
+.map-embed{margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.map-embed iframe{width:100%;border:0;display:block}
 
 /* ==================== нижний HUD ==================== */
 .hud{
@@ -542,7 +550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <path id="trailGhost" d=""/>
   <path id="trailPath" d=""/>
   <g id="trailSplats"></g>
-  <circle id="trailBall" r="7" fill="#3bf07e"/>
+  <circle id="trailBall" r="5" fill="#3bf07e"/>
 </svg>
 
 <!-- загрузка -->
@@ -568,7 +576,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1><span class="glitch" data-t="ADRENALINE">ADRENALINE</span></h1>
     <p class="sub" style="margin-left:auto;margin-right:auto">Пейнтбол, орбизбол, тир и стрельба из лука на <b>1400 м²</b> игровых площадок</p>
     <div class="offer">
-      <div class="price">Запишись сейчас — играй уже сегодня</div>
+      <div class="price">Запишись сейчас - играй уже сегодня</div>
       <div class="cap">РАБОТАЕМ ДО 02:00 · ЭКИПИРОВКА И ИНСТРУКТОР ВКЛЮЧЕНЫ · АРЕНДА АРЕНЫ НЕ НУЖНА</div>
     </div>
     <div class="hero-cta">
@@ -616,9 +624,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="sec-lead rv d1">Не просто площадка, а тактический клуб с тремя сценариями боя, снаряжением и инструкторами</p>
   </div>
   <div class="ben-grid">
-    <div class="ben rv rv-l"><div class="n">1400 м²</div><div class="t">игровых площадок под крышей и на воздухе</div></div>
+    <div class="ben rv rv-l"><div class="n">1400 м²</div><div class="t">игровых площадок: тёплое крытое помещение и открытый воздух</div></div>
     <div class="ben rv rv-r d1"><div class="n">3 арены</div><div class="t">Штурм, Лабиринт и Arena Soft</div></div>
-    <div class="ben rv rv-l d2"><div class="n">6+</div><div class="t">форматы для детей и взрослых</div></div>
+    <div class="ben rv rv-l d2"><div class="n">6+</div><div class="t">орбизбол от 6 лет, пейнтбол от 10 лет</div></div>
     <div class="ben rv rv-r d3"><div class="n">P</div><div class="t">бесплатная парковка у клуба</div></div>
     <div class="ben wide rv rv-s d4"><div class="n">Ежедневно 10:00–02:00</div><div class="t">играем допоздна, по предварительной записи</div></div>
   </div>
@@ -647,7 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="step-num">03</div>
       <div class="st-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4" stroke="#3fd6ec"/><circle cx="12" cy="12" r="1.2" fill="#3bf07e" stroke="none"/></svg></div>
       <b>Бой</b>
-      <p>«3, 2, 1 — игра началась!» Захват флага или штурм базы</p>
+      <p>«3, 2, 1 - игра началась!» Захват флага или штурм базы</p>
     </div>
     <div class="step rv rv-r d3">
       <div class="step-num">04</div>
@@ -668,7 +676,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <article class="op rv" id="paintball" data-code="OP-01 // PAINTBALL">
     <div class="op-head">
       <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M3 14h9l2-3h5l2 3v2H3v-2Z"/><path d="M6 14v-3h4"/><circle cx="18" cy="19" r="1.6" fill="#3bf07e" stroke="none"/><circle cx="14" cy="19.5" r="1.2" fill="#3bf07e" stroke="none"/></svg></div>
-      <h3>Пейнтбол<small>КЛАССИКА КОМАНДНОГО БОЯ</small></h3>
+      <h3>Пейнтбол<small>КОМАНДНЫЙ БОЙ · ОТ 10 ЛЕТ</small></h3>
     </div>
     <p>Полная экипировка входит в стоимость. Инструктор проводит брифинг и следит за безопасностью на поле.</p>
     <div class="tarif">
@@ -676,22 +684,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="tarif-row hot rv rv-r"><div class="tn">Сержант<span class="badge">ВЫБОР №1</span><small>200 шаров · экипировка включена</small></div><div class="tp">8 000 тг</div></div>
       <div class="tarif-row rv rv-l"><div class="tn">Генерал<small>300 шаров · экипировка включена</small></div><div class="tp">9 500 тг</div></div>
     </div>
-    <div class="op-note">Докупка шаров — <b>25 тг/шт</b> · цена за одного игрока</div>
+    <div class="op-note">Докупка шаров - <b>от 25 тг/шт</b> · цена за одного игрока</div>
     <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D0%B9%D0%BD%D1%82%D0%B1%D0%BE%D0%BB" target="_blank" rel="noopener">Забронировать пейнтбол</a>
   </article>
 
   <article class="op rv" id="orbizball" data-code="OP-02 // ORBEEZ">
     <div class="op-head">
       <div class="op-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3.4" stroke="#3bf07e" stroke-width="1.7"/><circle cx="15.5" cy="13" r="3.4" stroke="#3fd6ec" stroke-width="1.7"/><circle cx="9.5" cy="17" r="2.6" stroke="#3bf07e" stroke-width="1.7"/></svg></div>
-      <h3>Орбизбол<small>МЯГКИЙ ФОРМАТ · ДЕТИ И НОВИЧКИ</small></h3>
+      <h3>Орбизбол<small>МЯГКИЙ ФОРМАТ · ДЕТИ ОТ 6 ЛЕТ</small></h3>
     </div>
-    <p>Гелевые шарики не оставляют синяков и следов. Идеально для детских праздников — играем на арене Arena Soft.</p>
+    <p>Весёлая и абсолютно безопасная игра для детей от 6 лет и подростков: специальные автоматы стреляют мягкими водяными шариками - не больно и без следов. Играем на арене Arena Soft, можно снимать классные фото и видео.</p>
     <div class="tarif">
       <div class="tarif-row rv rv-l"><div class="tn">Курсант<small>1 час · 2 магазина</small></div><div class="tp">5 000 тг</div></div>
       <div class="tarif-row rv rv-r"><div class="tn">Сержант<small>1,5 часа · 4 магазина</small></div><div class="tp">7 000 тг</div></div>
       <div class="tarif-row hot rv rv-l"><div class="tn">Генерал<span class="badge">ТОП ПРОДАЖ</span><small>2 часа · 6 магазинов</small></div><div class="tp">9 000 тг</div></div>
     </div>
-    <div class="op-note">Дополнительный магазин — <b>от 1 000 тг</b></div>
+    <div class="op-note">В стоимость входит: автомат, защита, шарики и аренда площадки · доп. магазин - <b>от 1 000 тг</b></div>
     <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D1%80%D0%B1%D0%B8%D0%B7%D0%B1%D0%BE%D0%BB" target="_blank" rel="noopener">Забронировать орбизбол</a>
   </article>
 
@@ -713,14 +721,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5" stroke="#3fd6ec"/><circle cx="12" cy="12" r="1.4" fill="#3bf07e" stroke="none"/></svg></div>
       <h3>Тир<small>СТРАЙКБОЛЬНОЕ ОРУЖИЕ</small></h3>
     </div>
-    <p>Пистолеты Glock и ПМ с отдачей, автоматы АК-47 и М4. Дальность прямого выстрела — до 40 метров.</p>
+    <p>Пистолеты Glock и ПМ с отдачей, автоматы АК-47 и М4. Дальность прямого выстрела - до 40 метров.</p>
     <div class="tarif">
       <div class="tarif-row rv rv-l"><div class="tn">Пистолет ПМ / Glock<small>3 магазина · 50–60 выстрелов</small></div><div class="tp">4 000 тг</div></div>
       <div class="tarif-row rv rv-r"><div class="tn">Автомат М4 / АК-47<small>120 выстрелов</small></div><div class="tp">7 000 тг</div></div>
       <div class="tarif-row hot rv rv-l"><div class="tn">Комбо 1 игрока<small>50 выстр. пистолет + 100 выстр. автомат</small></div><div class="tp">9 000 тг</div></div>
       <div class="tarif-row rv rv-r"><div class="tn">Комбо усиленное<small>70 выстр. пистолет + 120 выстр. автомат</small></div><div class="tp">11 000 тг</div></div>
     </div>
-    <div class="op-note">Базовое обучение с инструктором — <b>2 000 тг/чел</b> (при первом посещении)</div>
+    <div class="op-note">Базовое обучение с инструктором - <b>2 000 тг/чел</b> (при первом посещении)</div>
     <a class="btn btn-paint js-wa" href="https://wa.me/77076525050?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%82%D0%B8%D1%80" target="_blank" rel="noopener">Забронировать тир</a>
   </article>
 
@@ -729,7 +737,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="op-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#3bf07e" stroke-width="1.7"><path d="M4 21 8 9l7 7-12 5Z"/><path d="M13 5l1-2M17 8l2-1M15 3l4 2-1 3" stroke="#3fd6ec"/></svg></div>
       <h3>Праздники и события<small>ПОД КЛЮЧ · ЛЮБОЙ ФОРМАТ</small></h3>
     </div>
-    <p>Организуем событие под ключ: игровые сценарии, инструкторы, зона отдыха. Именинникам — антуражный маркер и маска в подарок.</p>
+    <p>Организуем событие под ключ: игровые сценарии, инструкторы, зона отдыха. Команда от 6 человек - именинник играет бесплатно, меньше 6 - дарим ему 50 шариков.</p>
     <div class="chips">
       <span class="chip">🎂 Дни рождения</span>
       <span class="chip">🏢 Корпоративы</span>
@@ -747,7 +755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sec-head">
     <div class="sec-tag rv">Не знаете, что выбрать?</div>
     <h2 class="sec-title rv trail-stop">Подбери свою <span class="pw">миссию</span></h2>
-    <p class="sec-lead rv d1">Два вопроса — и система подберёт идеальный формат игры</p>
+    <p class="sec-lead rv d1">Два вопроса - и система подберёт идеальный формат игры</p>
   </div>
   <div class="quiz rv rv-s" id="quizBox">
     <div id="quizGame">
@@ -784,6 +792,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="mission-body">
       <div class="mission-map"><img src="img/map-shturm.webp" alt="Карта арены Штурм" loading="lazy"></div>
+      <div class="mission-photos">
+        <button class="gph mph" data-full="img/loc-01.webp"><img src="img/loc-01.webp" alt="Арена Штурм - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-02.webp"><img src="img/loc-02.webp" alt="Арена Штурм - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-03.webp"><img src="img/loc-03.webp" alt="Арена Штурм - фото" loading="lazy"></button>
+      </div>
       <div class="mission-tags"><span>СКОРОСТЬ</span><span>ОТКРЫТЫЙ БОЙ</span><span>КОМАНДА</span></div>
     </div>
   </div>
@@ -799,6 +812,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="mission-body">
       <div class="mission-map"><img src="img/map-labirint.webp" alt="Карта арены Лабиринт" loading="lazy"></div>
+      <div class="mission-photos">
+        <button class="gph mph" data-full="img/int-lab-sign.webp"><img src="img/int-lab-sign.webp" alt="Табличка тактической зоны Лабиринт" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-04.webp"><img src="img/loc-04.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-05.webp"><img src="img/loc-05.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-06.webp"><img src="img/loc-06.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
+      </div>
       <div class="mission-tags"><span>ЗАСАДЫ</span><span>ТАКТИКА</span><span>БЛИЖНИЙ БОЙ</span></div>
     </div>
   </div>
@@ -814,6 +833,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="mission-body">
       <div class="mission-map"><img src="img/map-arenasoft.webp" alt="Карта арены Arena Soft" loading="lazy"></div>
+      <div class="mission-photos">
+        <button class="gph mph" data-full="img/loc-07.webp"><img src="img/loc-07.webp" alt="Arena Soft - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-08.webp"><img src="img/loc-08.webp" alt="Arena Soft - фото" loading="lazy"></button>
+      </div>
       <div class="mission-tags"><span>ДЕТИ 6+</span><span>ОРБИЗБОЛ</span><span>БЕЗОПАСНО</span></div>
     </div>
   </div>
@@ -838,7 +861,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="rent-row"><b>Перчатки новые</b><span class="rp">200 тг</span></div>
     <div class="rent-row"><b>Бахилы от грязи и влаги</b><span class="rp">от 1 000 тг</span></div>
   </div>
-  <div class="rent-gift rv">🎁 НА ДНЯХ РОЖДЕНИЯ АНТУРАЖНЫЙ МАРКЕР И МАСКА — БЕСПЛАТНО</div>
+  <div class="rent-gift rv">🎁 ИМЕНИННИКУ: КОМАНДА ОТ 6 ЧЕЛОВЕК - ИГРАЕТ БЕСПЛАТНО · МЕНЬШЕ 6 - ПЛЮС 50 ШАРИКОВ · МАРКЕР И МАСКА В ПОДАРОК</div>
 </section>
 
 <!-- ==================== ПРАВИЛА БЕЗОПАСНОСТИ ==================== -->
@@ -846,11 +869,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sec-head">
     <div class="sec-tag rv">Техника безопасности</div>
     <h2 class="sec-title rv trail-stop">Правила <span class="pw">игры</span></h2>
-    <p class="sec-lead rv d1">Инструктор проведёт полный брифинг перед боем — а это шпаргалка</p>
+    <p class="sec-lead rv d1">Инструктор проведёт полный брифинг перед боем - а это шпаргалка</p>
   </div>
   <div class="frame rv rv-s">
     <img src="img/rules.webp" alt="Правила безопасности игры в пейнтбол" loading="lazy">
-    <div class="frame-cap">Безопасность — превыше всего · маска всегда на лице · дистанция 3 метра</div>
+    <div class="frame-cap">Безопасность - превыше всего · маска всегда на лице · дистанция 3 метра</div>
   </div>
 </section>
 
@@ -859,15 +882,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sec-head">
     <div class="sec-tag rv">Полевые сводки</div>
     <h2 class="sec-title rv trail-stop">Фото и <span class="pw">видео</span></h2>
-    <p class="sec-lead rv d1">Живые кадры с игр — больше в Instagram <a href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener">@adrenalinepbc</a></p>
+    <p class="sec-lead rv d1">Арены, зона отдыха с граффити и кадры с игр - больше в Instagram <a href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener">@adrenalinepbc</a></p>
   </div>
   <div class="gal">
-    <button class="gph v rv" data-full="img/photo-03.webp"><img src="img/photo-03.webp" alt="Игра в пейнтбол в клубе ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d1" data-full="img/photo-01.webp"><img src="img/photo-01.webp" alt="Игроки на арене клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/photo-03.webp"><img src="img/photo-03.webp" alt="Команда игроков в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/photo-01.webp"><img src="img/photo-01.webp" alt="Игроки в экипировке ADRENALINE" loading="lazy"></button>
     <button class="gph rv rv-r d2" data-full="img/photo-02.webp"><img src="img/photo-02.webp" alt="Экипировка и снаряжение ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d3" data-full="img/photo-04.webp"><img src="img/photo-04.webp" alt="Пейнтбольная площадка ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-r d4" data-full="img/photo-05.webp"><img src="img/photo-05.webp" alt="Командная игра в ADRENALINE" loading="lazy"></button>
-    <button class="gph v rv" data-full="img/photo-06.webp"><img src="img/photo-06.webp" alt="Тактический клуб ADRENALINE Алматы" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/int-mural.webp"><img src="img/int-mural.webp" alt="Граффити PAINTBALL в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/photo-04.webp"><img src="img/photo-04.webp" alt="Игрок с маркером на арене" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/photo-05.webp"><img src="img/photo-05.webp" alt="Тир клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/int-lounge.webp"><img src="img/int-lounge.webp" alt="Зона отдыха с граффити в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/int-mags.webp"><img src="img/int-mags.webp" alt="Магазины Tippmann в клубе" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/int-reception.webp"><img src="img/int-reception.webp" alt="Ресепшн клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d3" data-full="img/photo-06.webp"><img src="img/photo-06.webp" alt="Стрельба в тире ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-r d4" data-full="img/int-maps.webp"><img src="img/int-maps.webp" alt="Карты трёх арен клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/int-lounge2.webp"><img src="img/int-lounge2.webp" alt="Зона отдыха клуба ADRENALINE" loading="lazy"></button>
   </div>
 
   <!-- лайтбокс -->
@@ -886,17 +915,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="rev-wrap">
     <div class="rev rv">
       <div class="stars">★★★★★</div>
-      <p>Отмечали день рождения сына — 12 детей, орбизбол на Arena Soft. Никто не ушёл без эмоций, инструкторы всё держали под контролем. Именинник получил маркер бесплатно!</p>
+      <p>Отмечали день рождения сына - 12 детей, орбизбол на Arena Soft. Никто не ушёл без эмоций, инструкторы всё держали под контролем. Именинник получил маркер бесплатно!</p>
       <div class="who"><div class="ava">А</div><div><b>Айгерим</b><small>ДЕТСКИЙ ПРАЗДНИК</small></div></div>
     </div>
     <div class="rev rv d1">
       <div class="stars">★★★★★</div>
-      <p>Играли корпоративом 20 человек, сценарий «Штурм» — это огонь. Динамика бешеная, площадка большая, парковка своя. Придём ещё на «Лабиринт».</p>
+      <p>Играли корпоративом 20 человек, сценарий «Штурм» - это огонь. Динамика бешеная, площадка большая, парковка своя. Придём ещё на «Лабиринт».</p>
       <div class="who"><div class="ava">Д</div><div><b>Данияр</b><small>КОРПОРАТИВ</small></div></div>
     </div>
     <div class="rev rv d2">
       <div class="stars">★★★★★</div>
-      <p>Тир — отдельный кайф. Glock с отдачей ощущается очень реалистично, инструктор всё показал. Взяли комбо на двоих, время пролетело незаметно.</p>
+      <p>Тир - отдельный кайф. Glock с отдачей ощущается очень реалистично, инструктор всё показал. Взяли комбо на двоих, время пролетело незаметно.</p>
       <div class="who"><div class="ava">М</div><div><b>Мадина</b><small>ТИР</small></div></div>
     </div>
   </div>
@@ -906,28 +935,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ==================== FAQ ==================== -->
 <section class="section" id="faq" style="padding-top:30px">
   <div class="sec-head">
-    <div class="sec-tag rv">Вопрос — ответ</div>
+    <div class="sec-tag rv">Вопрос - ответ</div>
     <h2 class="sec-title rv trail-stop">Частые <span class="pw">вопросы</span></h2>
   </div>
   <div class="faq rv">
+    <div class="faq-q">Есть ли бонусы для именинников?</div>
+    <div class="faq-a"><p>Да! Если команда от 6 человек - именинник играет бесплатно 🎁 Если меньше 6 человек - имениннику дарим дополнительно 50 шариков 🎯 Плюс антуражный маркер и маска в подарок.</p></div>
+  </div>
+  <div class="faq rv">
     <div class="faq-q">С какого возраста можно играть?</div>
-    <div class="faq-a"><p>Орбизбол — мягкий формат для детей и новичков, играют даже младшие школьники. Пейнтбол подходит подросткам и взрослым. Позвоните — подберём формат под возраст вашей компании.</p></div>
+    <div class="faq-a"><p>Орбизбол - от 6 лет, пейнтбол - от 10 лет. Позвоните - подберём формат под возраст вашей компании.</p></div>
   </div>
   <div class="faq rv d1">
     <div class="faq-q">Это больно?</div>
-    <div class="faq-a"><p>В орбизболе гелевые шарики не оставляют ни синяков, ни следов. В пейнтболе выдаём полную защиту, а правила запрещают стрелять ближе 3 метров — ощущения бодрят, но это часть драйва.</p></div>
+    <div class="faq-a"><p>Орбизбол абсолютно безопасен: специальные автоматы стреляют мягкими водяными шариками - не больно и без следов. В пейнтболе выдаём полную защиту, а правила запрещают стрелять ближе 3 метров - ощущения бодрят, но это часть драйва.</p></div>
   </div>
   <div class="faq rv d2">
     <div class="faq-q">Что взять с собой?</div>
-    <div class="faq-a"><p>Только удобную одежду и обувь, которую не жалко. Вся экипировка — маркер, маска, защита — входит в стоимость. Есть перчатки и бахилы в аренду.</p></div>
+    <div class="faq-a"><p>Только удобную одежду и обувь, которую не жалко. Вся экипировка - маркер, маска, защита - входит в стоимость. Есть перчатки и бахилы в аренду.</p></div>
   </div>
   <div class="faq rv d3">
     <div class="faq-q">Нужно ли записываться заранее?</div>
-    <div class="faq-a"><p>Да, работаем ежедневно с 10:00 до 02:00 по предварительной записи. Напишите в WhatsApp или позвоните — забронируем удобное время.</p></div>
+    <div class="faq-a"><p>Да, работаем ежедневно с 10:00 до 02:00 по предварительной записи. Напишите в WhatsApp или позвоните - забронируем удобное время.</p></div>
   </div>
   <div class="faq rv d4">
     <div class="faq-q">Есть ли парковка?</div>
-    <div class="faq-a"><p>Да, бесплатная парковка прямо у клуба. Адрес: Толе би 273/4А, ЖК «Жайлы» — удобный заезд, легко найти по 2GIS.</p></div>
+    <div class="faq-a"><p>Да, бесплатная парковка прямо у клуба. Адрес: Толе би 273/4А, ЖК «Жайлы» - удобный заезд, легко найти по 2GIS.</p></div>
   </div>
 </section>
 
@@ -936,7 +969,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sec-head">
     <div class="sec-tag rv">Мобилизация</div>
     <h2 class="sec-title rv trail-stop">Собери свой <span class="pw">отряд</span></h2>
-    <p class="sec-lead rv d1">Оставьте заявку — перезвоним в течение 15 минут и подберём время игры</p>
+    <p class="sec-lead rv d1">Оставьте заявку - перезвоним в течение 15 минут и подберём время игры</p>
   </div>
   <div class="form-card rv rv-s">
     <form id="leadForm" novalidate>
@@ -966,7 +999,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </form>
     <div class="form-ok" id="formOk">
       <div class="big">✔ Заявка принята</div>
-      <p>Сейчас откроется WhatsApp с вашими данными — просто нажмите «Отправить».<br>Мы свяжемся с вами в течение 15 минут.</p>
+      <p>Сейчас откроется WhatsApp с вашими данными - просто нажмите «Отправить».<br>Мы свяжемся с вами в течение 15 минут.</p>
     </div>
   </div>
 </section>
@@ -996,12 +1029,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
   </div>
   <div class="map-embed rv" id="map">
-    <iframe src="https://www.google.com/maps?q=%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%2C%20%D0%A2%D0%BE%D0%BB%D0%B5%20%D0%B1%D0%B8%20273%2F4%D0%B0&output=embed" loading="lazy" title="Карта проезда ADRENALINE" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- Официальный виджет карты 2GIS с меткой клуба -->
+    <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+    <script charset="utf-8">new DGWidgetLoader({"width":"100%","height":300,"borderColor":"#1e4d5e","pos":{"lat":43.248549,"lon":76.866052,"zoom":16},"opt":{"city":"almaty"},"org":[{"id":"70000001102382770"}]});</script>
+    <noscript><a href="https://2gis.kz/almaty/firm/70000001102382770" target="_blank" rel="noopener">Открыть карту в 2GIS</a></noscript>
   </div>
 </section>
 
 <footer>
-  ADRENALINE — СПОРТИВНО-ТАКТИЧЕСКИЙ КЛУБ<br>
+  ADRENALINE - СПОРТИВНО-ТАКТИЧЕСКИЙ КЛУБ<br>
   г. Алматы, ул. Толе би 273/4А · <a href="tel:+77076525050" class="js-phone">+7 707 652 50 50</a><br>
   © 2026 · ЕЖЕДНЕВНО 10:00–02:00 ПО ПРЕДВАРИТЕЛЬНОЙ ЗАПИСИ
 </footer>
@@ -1082,7 +1118,7 @@ function buildTrail(){
   stopsEls.forEach(el => {
     const r = el.getBoundingClientRect();
     const y = r.top + scrollY + r.height/2;
-    const x = side % 2 === 0 ? w * .1 : w * .9;
+    const x = side % 2 === 0 ? w * .045 : w * .955;
     pts.push({x, y, stop:true, el});
     side++;
   });
@@ -1109,6 +1145,7 @@ function buildTrail(){
     path.setAttribute('d', SPLAT_D);
     path.setAttribute('fill', splatColors[idx % 3]);
     path.setAttribute('class', 'trail-splat');
+    path.setAttribute('transform','scale(.72)');
     path.setAttribute('opacity', '0');
     g.appendChild(path);
     trailSplats.appendChild(g);
@@ -1198,7 +1235,7 @@ document.querySelectorAll('.btn').forEach(b => {
       w:'%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D0%B9%D0%BD%D1%82%D0%B1%D0%BE%D0%BB'},
     orbiz:{t:'ОРБИЗБОЛ', x:'Мягкие гелевые шарики без синяков на арене Arena Soft. Идеально для детей и новичков, от 5 000 тг.',
       w:'%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D1%80%D0%B1%D0%B8%D0%B7%D0%B1%D0%BE%D0%BB'},
-    range:{t:'ТИР + ЛУК', x:'Glock и АК-47 с отдачей или классический лук — проверьте свою меткость, от 3 000 тг.',
+    range:{t:'ТИР + ЛУК', x:'Glock и АК-47 с отдачей или классический лук - проверьте свою меткость, от 3 000 тг.',
       w:'%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%82%D0%B8%D1%80'}
   };
   let step = 0, ans = [];
