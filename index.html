@@ -7,7 +7,7 @@
 <meta name="description" content="Спортивно-тактический клуб ADRENALINE в Алматы. Пейнтбол от 6 000 тг, орбизбол, стрельба из лука, тир. 1400 м² игровых площадок, 3 сценария. Толе би 273/4А. Ежедневно 10:00–02:00.">
 <meta property="og:title" content="ADRENALINE - пейнтбол в Алматы от 6 000 тг">
 <meta property="og:description" content="1400 м² игровых площадок · 3 игровых сценария · пейнтбол, орбизбол, тир, лук · дни рождения и корпоративы">
-<meta property="og:image" content="img/logo.webp">
+<meta property="og:image" content="img/logo.png">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -400,6 +400,15 @@ a{color:inherit}
   text-align:center;line-height:1.6}
 
 /* ==================== галерея ==================== */
+.gal-sub{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--font-m);font-size:10.5px;letter-spacing:.26em;color:var(--paint);
+  text-transform:uppercase;margin:30px 0 14px;
+}
+.gal-sub:first-of-type{margin-top:0}
+.gal-sub::before,.gal-sub::after{content:'';flex:1;max-width:70px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line))}
+.gal-sub::after{background:linear-gradient(90deg,var(--line),transparent)}
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .gal .gph{
   aspect-ratio:1;border-radius:13px;border:1px solid var(--line);
@@ -555,7 +564,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- загрузка -->
 <div id="boot" aria-hidden="true">
-  <img class="boot-logo" src="img/logo.webp" alt="">
+  <img class="boot-logo" src="img/logo.png" alt="">
   <div class="boot-bar"><i></i></div>
   <div class="boot-line" id="bootLine">ИНИЦИАЛИЗАЦИЯ ТАКТИЧЕСКОЙ СИСТЕМЫ…</div>
 </div>
@@ -571,7 +580,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="hero" id="main">
   <div class="scanline"></div>
   <div class="hero-inner" id="heroInner">
-    <img class="hero-logo" src="img/logo.webp" alt="Логотип ADRENALINE">
+    <img class="hero-logo" src="img/logo.png" alt="Логотип ADRENALINE">
     <div class="hero-callsign">СПОРТИВНО-ТАКТИЧЕСКИЙ КЛУБ · АЛМАТЫ</div>
     <h1><span class="glitch" data-t="ADRENALINE">ADRENALINE</span></h1>
     <p class="sub" style="margin-left:auto;margin-right:auto">Пейнтбол, орбизбол, тир и стрельба из лука на <b>1400 м²</b> игровых площадок</p>
@@ -791,11 +800,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
     </div>
     <div class="mission-body">
-      <div class="mission-map"><img src="img/map-shturm.webp" alt="Карта арены Штурм" loading="lazy"></div>
+      <div class="mission-map"><img src="img/map-shturm.jpg" alt="Карта арены Штурм" loading="lazy"></div>
       <div class="mission-photos">
-        <button class="gph mph" data-full="img/loc-01.webp"><img src="img/loc-01.webp" alt="Арена Штурм - фото" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-02.webp"><img src="img/loc-02.webp" alt="Арена Штурм - фото" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-03.webp"><img src="img/loc-03.webp" alt="Арена Штурм - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-01.jpg"><img src="img/loc-01.jpg" alt="Арена Штурм - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-02.jpg"><img src="img/loc-02.jpg" alt="Арена Штурм - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-03.jpg"><img src="img/loc-03.jpg" alt="Арена Штурм - фото" loading="lazy"></button>
       </div>
       <div class="mission-tags"><span>СКОРОСТЬ</span><span>ОТКРЫТЫЙ БОЙ</span><span>КОМАНДА</span></div>
     </div>
@@ -811,12 +820,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
     </div>
     <div class="mission-body">
-      <div class="mission-map"><img src="img/map-labirint.webp" alt="Карта арены Лабиринт" loading="lazy"></div>
+      <div class="mission-map"><img src="img/map-labirint.jpg" alt="Карта арены Лабиринт" loading="lazy"></div>
       <div class="mission-photos">
-        <button class="gph mph" data-full="img/int-lab-sign.webp"><img src="img/int-lab-sign.webp" alt="Табличка тактической зоны Лабиринт" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-04.webp"><img src="img/loc-04.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-05.webp"><img src="img/loc-05.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-06.webp"><img src="img/loc-06.webp" alt="Арена Лабиринт - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/int-lab-sign.jpg"><img src="img/int-lab-sign.jpg" alt="Табличка тактической зоны Лабиринт" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-04.jpg"><img src="img/loc-04.jpg" alt="Арена Лабиринт - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-05.jpg"><img src="img/loc-05.jpg" alt="Арена Лабиринт - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-06.jpg"><img src="img/loc-06.jpg" alt="Арена Лабиринт - фото" loading="lazy"></button>
       </div>
       <div class="mission-tags"><span>ЗАСАДЫ</span><span>ТАКТИКА</span><span>БЛИЖНИЙ БОЙ</span></div>
     </div>
@@ -832,10 +841,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mission-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#3bf07e" stroke-width="2"/></svg></div>
     </div>
     <div class="mission-body">
-      <div class="mission-map"><img src="img/map-arenasoft.webp" alt="Карта арены Arena Soft" loading="lazy"></div>
+      <div class="mission-map"><img src="img/map-arenasoft.jpg" alt="Карта арены Arena Soft" loading="lazy"></div>
       <div class="mission-photos">
-        <button class="gph mph" data-full="img/loc-07.webp"><img src="img/loc-07.webp" alt="Arena Soft - фото" loading="lazy"></button>
-        <button class="gph mph" data-full="img/loc-08.webp"><img src="img/loc-08.webp" alt="Arena Soft - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-07.jpg"><img src="img/loc-07.jpg" alt="Arena Soft - фото" loading="lazy"></button>
+        <button class="gph mph" data-full="img/loc-08.jpg"><img src="img/loc-08.jpg" alt="Arena Soft - фото" loading="lazy"></button>
       </div>
       <div class="mission-tags"><span>ДЕТИ 6+</span><span>ОРБИЗБОЛ</span><span>БЕЗОПАСНО</span></div>
     </div>
@@ -872,7 +881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="sec-lead rv d1">Инструктор проведёт полный брифинг перед боем - а это шпаргалка</p>
   </div>
   <div class="frame rv rv-s">
-    <img src="img/rules.webp" alt="Правила безопасности игры в пейнтбол" loading="lazy">
+    <img src="img/rules.jpg" alt="Правила безопасности игры в пейнтбол" loading="lazy">
     <div class="frame-cap">Безопасность - превыше всего · маска всегда на лице · дистанция 3 метра</div>
   </div>
 </section>
@@ -884,19 +893,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="sec-title rv trail-stop">Фото и <span class="pw">видео</span></h2>
     <p class="sec-lead rv d1">Арены, зона отдыха с граффити и кадры с игр - больше в Instagram <a href="https://www.instagram.com/adrenalinepbc" target="_blank" rel="noopener">@adrenalinepbc</a></p>
   </div>
+  <div class="gal-sub">Игроки и команды</div>
   <div class="gal">
-    <button class="gph v rv" data-full="img/photo-03.webp"><img src="img/photo-03.webp" alt="Команда игроков в клубе ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d1" data-full="img/photo-01.webp"><img src="img/photo-01.webp" alt="Игроки в экипировке ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-r d2" data-full="img/photo-02.webp"><img src="img/photo-02.webp" alt="Экипировка и снаряжение ADRENALINE" loading="lazy"></button>
-    <button class="gph v rv" data-full="img/int-mural.webp"><img src="img/int-mural.webp" alt="Граффити PAINTBALL в клубе ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d1" data-full="img/photo-04.webp"><img src="img/photo-04.webp" alt="Игрок с маркером на арене" loading="lazy"></button>
-    <button class="gph rv rv-r d2" data-full="img/photo-05.webp"><img src="img/photo-05.webp" alt="Тир клуба ADRENALINE" loading="lazy"></button>
-    <button class="gph v rv" data-full="img/int-lounge.webp"><img src="img/int-lounge.webp" alt="Зона отдыха с граффити в клубе ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d1" data-full="img/int-mags.webp"><img src="img/int-mags.webp" alt="Магазины Tippmann в клубе" loading="lazy"></button>
-    <button class="gph rv rv-r d2" data-full="img/int-reception.webp"><img src="img/int-reception.webp" alt="Ресепшн клуба ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-l d3" data-full="img/photo-06.webp"><img src="img/photo-06.webp" alt="Стрельба в тире ADRENALINE" loading="lazy"></button>
-    <button class="gph rv rv-r d4" data-full="img/int-maps.webp"><img src="img/int-maps.webp" alt="Карты трёх арен клуба ADRENALINE" loading="lazy"></button>
-    <button class="gph v rv" data-full="img/int-lounge2.webp"><img src="img/int-lounge2.webp" alt="Зона отдыха клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/photo-03.jpg"><img src="img/photo-03.jpg" alt="Команда игроков в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/photo-01.jpg"><img src="img/photo-01.jpg" alt="Игроки в экипировке ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/photo-02.jpg"><img src="img/photo-02.jpg" alt="Экипировка и снаряжение ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/photo-04.jpg"><img src="img/photo-04.jpg" alt="Игрок с маркером на арене" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/photo-05.jpg"><img src="img/photo-05.jpg" alt="Стрельба в тире ADRENALINE" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/photo-06.jpg"><img src="img/photo-06.jpg" alt="Тир клуба ADRENALINE" loading="lazy"></button>
+  </div>
+
+  <div class="gal-sub">Интерьер клуба</div>
+  <div class="gal">
+    <button class="gph v rv" data-full="img/int-mural.jpg"><img src="img/int-mural.jpg" alt="Граффити PAINTBALL в клубе ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/int-lounge.jpg"><img src="img/int-lounge.jpg" alt="Зона отдыха с граффити" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/int-reception.jpg"><img src="img/int-reception.jpg" alt="Ресепшн клуба ADRENALINE" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/int-mags.jpg"><img src="img/int-mags.jpg" alt="Магазины Tippmann в клубе" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/int-maps.jpg"><img src="img/int-maps.jpg" alt="Карты трёх арен клуба" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/int-lounge2.jpg"><img src="img/int-lounge2.jpg" alt="Зона отдыха клуба ADRENALINE" loading="lazy"></button>
+  </div>
+
+  <div class="gal-sub">Игровые локации</div>
+  <div class="gal">
+    <button class="gph v rv" data-full="img/loc-01.jpg"><img src="img/loc-01.jpg" alt="Арена Штурм" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/loc-02.jpg"><img src="img/loc-02.jpg" alt="Укрытия на арене Штурм" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/loc-03.jpg"><img src="img/loc-03.jpg" alt="Игровая зона арены" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/loc-04.jpg"><img src="img/loc-04.jpg" alt="Арена Лабиринт" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/loc-05.jpg"><img src="img/loc-05.jpg" alt="Проходы арены Лабиринт" loading="lazy"></button>
+    <button class="gph v rv" data-full="img/loc-06.jpg"><img src="img/loc-06.jpg" alt="Укрытия арены Лабиринт" loading="lazy"></button>
+    <button class="gph rv rv-l d1" data-full="img/loc-07.jpg"><img src="img/loc-07.jpg" alt="Arena Soft для орбизбола" loading="lazy"></button>
+    <button class="gph rv rv-r d2" data-full="img/loc-08.jpg"><img src="img/loc-08.jpg" alt="Площадка Arena Soft" loading="lazy"></button>
   </div>
 
   <!-- лайтбокс -->
